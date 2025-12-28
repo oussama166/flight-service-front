@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Crew Training &amp; Resources - FlyEasy</title>
+<!-- Google Fonts: Inter -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Config -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#003366", // Deep Navy Blue
+              "primary-hover": "#002244",
+              "cta": "#FF6600",     // Vibrant Orange
+              "cta-hover": "#e65c00",
+              "background-light": "#f5f7f8",
+              "background-dark": "#0f1923",
+              "surface": "#ffffff",
+            },
+            fontFamily: {
+              "display": ["Inter", "sans-serif"]
+            },
+            borderRadius: {
+                "DEFAULT": "0.5rem",
+                "lg": "0.75rem",
+                "xl": "1rem",
+                "2xl": "1.5rem", 
+                "full": "9999px"
+            },
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-800 font-display antialiased overflow-hidden selection:bg-cta selection:text-white">
+<div class="flex h-screen w-full">
+<!-- Sidebar Navigation -->
+<aside class="hidden md:flex flex-col w-72 bg-primary h-full text-white shadow-xl z-20">
+<!-- Brand -->
+<div class="flex items-center gap-3 px-6 py-6 border-b border-white/10">
+<div class="size-8 text-cta">
+<svg fill="currentColor" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M13.8261 30.5736C16.7203 29.8826 20.2244 29.4783 24 29.4783C27.7756 29.4783 31.2797 29.8826 34.1739 30.5736C36.9144 31.2278 39.9967 32.7669 41.3563 33.8352L24.8486 7.36089C24.4571 6.73303 23.5429 6.73303 23.1514 7.36089L6.64374 33.8352C8.00331 32.7669 11.0856 31.2278 13.8261 30.5736Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-xl font-bold tracking-tight">FlyEasy Crew</h2>
+</div>
+<!-- Nav Links -->
+<nav class="flex flex-col gap-2 p-4 flex-1 overflow-y-auto">
+<div class="px-2 mb-2 text-xs font-semibold uppercase tracking-wider text-slate-400">Main Menu</div>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-300 hover:bg-white/10 hover:text-white transition-colors group" href="#">
+<span class="material-symbols-outlined text-[24px] group-hover:scale-110 transition-transform">dashboard</span>
+<span class="font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg bg-cta text-white shadow-lg shadow-cta/20 transition-all" href="#">
+<span class="material-symbols-outlined text-[24px]">school</span>
+<span class="font-medium">Training Center</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-300 hover:bg-white/10 hover:text-white transition-colors group" href="#">
+<span class="material-symbols-outlined text-[24px] group-hover:scale-110 transition-transform">folder_open</span>
+<span class="font-medium">Resources</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-300 hover:bg-white/10 hover:text-white transition-colors group" href="#">
+<span class="material-symbols-outlined text-[24px] group-hover:scale-110 transition-transform">calendar_month</span>
+<span class="font-medium">Schedule</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-300 hover:bg-white/10 hover:text-white transition-colors group" href="#">
+<span class="material-symbols-outlined text-[24px] group-hover:scale-110 transition-transform">warning</span>
+<span class="font-medium">Report Issue</span>
+</a>
+<div class="mt-8 px-2 mb-2 text-xs font-semibold uppercase tracking-wider text-slate-400">Support</div>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-300 hover:bg-white/10 hover:text-white transition-colors group" href="#">
+<span class="material-symbols-outlined text-[24px] group-hover:scale-110 transition-transform">help</span>
+<span class="font-medium">Help Desk</span>
+</a>
+</nav>
+<!-- User Mini Profile -->
+<div class="p-4 bg-black/20 m-4 rounded-xl border border-white/5">
+<div class="flex items-center gap-3">
+<div class="relative">
+<div class="size-10 rounded-full bg-slate-300 bg-cover bg-center" data-alt="Portrait of Captain Reynolds" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDP_7MISRNDsBiliNVZF9WBxq_KAjPdZNojLIsVNM5lDxeAxeUVRvBYhGGW9DQe0xHQmHNP5OB32jcoVA0i0KCN4GI9dxduKMazDBRo3v7MQ-qVIh-RD6waogC1lHs1j2d1IUZE2uQUpte0xuLUCtbcdOjk8_kQH5U4_E49SIseTR1tjGY8H3AT87i38nOoLtOZClPbhGK-1y3_qZbTBjortE1nnO9d9tNJEYbr62y3-hwTjLbmn4r38_Dakc_2UwzTlOvvEECaQ1g')"></div>
+<div class="absolute bottom-0 right-0 size-3 bg-green-500 rounded-full border-2 border-primary"></div>
+</div>
+<div class="flex flex-col overflow-hidden">
+<span class="text-sm font-semibold truncate text-white">Capt. Reynolds</span>
+<span class="text-xs text-slate-400 truncate">Senior Pilot</span>
+</div>
+<button class="ml-auto text-slate-400 hover:text-white">
+<span class="material-symbols-outlined text-[20px]">logout</span>
+</button>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<div class="flex flex-col flex-1 h-full overflow-hidden relative">
+<!-- Top Header (Mobile specific mainly, but useful for breadcrumbs/search on desktop) -->
+<header class="flex items-center justify-between px-6 py-4 bg-white border-b border-slate-200 shadow-sm z-10 h-18">
+<div class="flex items-center gap-4">
+<button class="md:hidden text-slate-600">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="hidden md:flex items-center gap-2 text-sm text-slate-500">
+<span>Crew Portal</span>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span class="font-semibold text-primary">Training Center</span>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<!-- Expanded Search Bar for Desktop -->
+<div class="hidden lg:block relative w-96">
+<span class="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</span>
+<input class="w-full py-2 pl-10 pr-4 text-sm text-slate-700 bg-slate-100 border-none rounded-full focus:ring-2 focus:ring-cta/50 focus:bg-white transition-all placeholder:text-slate-400" placeholder="Search manuals, protocols, or modules..." type="text"/>
+</div>
+<button class="relative p-2 text-slate-600 hover:text-primary transition-colors rounded-full hover:bg-slate-100">
+<span class="material-symbols-outlined text-[24px]">notifications</span>
+<span class="absolute top-1.5 right-1.5 size-2 bg-cta rounded-full ring-2 ring-white"></span>
+</button>
+</div>
+</header>
+<!-- Scrollable Content -->
+<main class="flex-1 overflow-y-auto p-4 md:p-8 scroll-smooth">
+<div class="max-w-7xl mx-auto flex flex-col gap-8">
+<!-- Page Heading & Welcome -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+<div>
+<h1 class="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight">Crew Training Center</h1>
+<p class="text-slate-500 mt-2 text-lg">Good Morning, Capt. Reynolds. You have <span class="text-cta font-bold">2 pending modules</span> due this week.</p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg border border-slate-300 bg-white text-slate-700 font-semibold hover:bg-slate-50 hover:border-slate-400 transition-all text-sm">
+<span class="material-symbols-outlined text-[20px]">history</span>
+                                History
+                            </button>
+<button class="flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg bg-primary text-white font-semibold shadow-md shadow-primary/20 hover:bg-primary-hover transition-all text-sm">
+<span class="material-symbols-outlined text-[20px]">download</span>
+                                My Certificates
+                            </button>
+</div>
+</div>
+<!-- Stats Cards -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between group hover:border-cta/50 transition-all">
+<div>
+<p class="text-slate-500 text-sm font-medium mb-1">Pending Modules</p>
+<p class="text-4xl font-bold text-slate-900">2</p>
+</div>
+<div class="size-12 rounded-full bg-orange-100 text-cta flex items-center justify-center group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">pending_actions</span>
+</div>
+</div>
+<div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between group hover:border-primary/50 transition-all">
+<div>
+<p class="text-slate-500 text-sm font-medium mb-1">Completed Courses</p>
+<p class="text-4xl font-bold text-slate-900">14</p>
+</div>
+<div class="size-12 rounded-full bg-blue-100 text-primary flex items-center justify-center group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">check_circle</span>
+</div>
+</div>
+<div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between group hover:border-primary/50 transition-all">
+<div>
+<p class="text-slate-500 text-sm font-medium mb-1">Total Flight Hours</p>
+<p class="text-4xl font-bold text-slate-900">1,240</p>
+</div>
+<div class="size-12 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">flight</span>
+</div>
+</div>
+</div>
+<!-- Main Grid: Training & Resources -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Left Column: Mandatory & In Progress (Span 2) -->
+<div class="lg:col-span-2 flex flex-col gap-8">
+<!-- Section Header -->
+<div class="flex items-center justify-between">
+<h3 class="text-xl font-bold text-slate-900 flex items-center gap-2">
+<span class="material-symbols-outlined text-cta">priority_high</span>
+                                    Mandatory Actions
+                                </h3>
+<a class="text-sm font-semibold text-primary hover:text-cta transition-colors" href="#">View All</a>
+</div>
+<!-- Course Card 1 (Urgent) -->
+<div class="flex flex-col md:flex-row bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+<div class="md:w-64 h-48 md:h-auto bg-slate-200 relative">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Airplane wing view representing safety procedures" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCDe1Q2aI_lOtSXai321AdByAWOqQf4LDl4Dx2Ig-K6ZgwtXvnP0RmDiAXZubTjVHP6wqPDHnZSYMFvVGRgP9ryJiuNzmrgq1Q_Q3S-qM-Q_Hd2trhczyQgcdxbfSpXjPyyQWqN2aM1km7G9i-SX2FHpmwNgsJh3sAXpBAErRixNPvm8fRWtHGlLrlS9W7YHWpTu0nOesE-PqWZIedERwZcut2zyfWA1tfkHMdkC7l87E_dR3gvHky0HzP34bR1hAb0MUVxreoP0cc')"></div>
+<div class="absolute top-3 left-3 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded shadow-sm">Overdue by 2 days</div>
+</div>
+<div class="p-6 flex flex-col justify-between flex-1">
+<div>
+<div class="flex justify-between items-start mb-2">
+<span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Safety Protocol</span>
+<span class="text-sm font-semibold text-red-600">High Priority</span>
+</div>
+<h4 class="text-xl font-bold text-slate-900 mb-2">Q4 Emergency Evacuation Procedures</h4>
+<p class="text-slate-600 text-sm line-clamp-2">Comprehensive review of new evacuation slide deployment protocols for the Airbus A320neo fleet. Includes interactive VR simulation.</p>
+</div>
+<div class="mt-6 flex items-end justify-between gap-4">
+<div class="w-full max-w-[200px]">
+<div class="flex justify-between text-xs mb-1 font-semibold">
+<span class="text-slate-500">Progress</span>
+<span class="text-primary">0%</span>
+</div>
+<div class="h-2 w-full bg-slate-100 rounded-full overflow-hidden">
+<div class="h-full bg-cta w-0"></div>
+</div>
+</div>
+<button class="bg-cta hover:bg-cta-hover text-white text-sm font-bold py-2 px-6 rounded-lg transition-colors shadow-lg shadow-cta/20">
+                                            Start Module
+                                        </button>
+</div>
+</div>
+</div>
+<!-- Course Card 2 (In Progress) -->
+<div class="flex flex-col md:flex-row bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+<div class="md:w-64 h-48 md:h-auto bg-slate-200 relative">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Medical kit and first aid supplies" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBvtUx5ZSO0FbcO1p5Y13CDRS0UcCy_LSpQWFyEeKdFl_KTu55x9TWjmrppO4e_hXa5AgK1g-fgV8OcUApqukzz4jCJmbw8ASNP1EbzfB0o2uttKJkfl8ngNpZsGlwT0S1u8nmQt5fqBiktRSS7f8XRoC8aYfFMY6TP_DtJkJnwLforZK9hc6Huqp6MszhqZn_7RDp8I3ElK6Ja7-joHamDm6bFZ-FqqrlSdp_IGusBA-h96bbly2tKQyLjY25pjk66uCDokOHYCOA')"></div>
+<div class="absolute top-3 left-3 bg-blue-500 text-white text-xs font-bold px-2 py-1 rounded shadow-sm">Due in 5 days</div>
+</div>
+<div class="p-6 flex flex-col justify-between flex-1">
+<div>
+<div class="flex justify-between items-start mb-2">
+<span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Medical</span>
+</div>
+<h4 class="text-xl font-bold text-slate-900 mb-2">In-Flight Medical Emergency Response</h4>
+<p class="text-slate-600 text-sm line-clamp-2">Updated guidelines for handling cardiac events and using the onboard AED. Required for all senior cabin crew.</p>
+</div>
+<div class="mt-6 flex items-end justify-between gap-4">
+<div class="w-full max-w-[200px]">
+<div class="flex justify-between text-xs mb-1 font-semibold">
+<span class="text-slate-500">Progress</span>
+<span class="text-primary">65%</span>
+</div>
+<div class="h-2 w-full bg-slate-100 rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[65%]"></div>
+</div>
+</div>
+<button class="bg-white border border-slate-300 hover:border-cta hover:text-cta text-slate-700 text-sm font-bold py-2 px-6 rounded-lg transition-colors">
+                                            Resume
+                                        </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Resource Library (Span 1) -->
+<div class="flex flex-col gap-6">
+<div class="flex items-center justify-between">
+<h3 class="text-xl font-bold text-slate-900">Resource Library</h3>
+</div>
+<div class="bg-white rounded-xl border border-slate-200 shadow-sm p-4">
+<div class="grid grid-cols-2 gap-3">
+<a class="flex flex-col items-center justify-center p-4 rounded-lg bg-slate-50 hover:bg-slate-100 border border-transparent hover:border-primary/20 transition-all text-center group" href="#">
+<span class="material-symbols-outlined text-4xl text-primary mb-2 group-hover:scale-110 transition-transform">menu_book</span>
+<span class="text-xs font-semibold text-slate-700">Manuals</span>
+</a>
+<a class="flex flex-col items-center justify-center p-4 rounded-lg bg-slate-50 hover:bg-slate-100 border border-transparent hover:border-primary/20 transition-all text-center group" href="#">
+<span class="material-symbols-outlined text-4xl text-cta mb-2 group-hover:scale-110 transition-transform">policy</span>
+<span class="text-xs font-semibold text-slate-700">Safety Policy</span>
+</a>
+<a class="flex flex-col items-center justify-center p-4 rounded-lg bg-slate-50 hover:bg-slate-100 border border-transparent hover:border-primary/20 transition-all text-center group" href="#">
+<span class="material-symbols-outlined text-4xl text-blue-500 mb-2 group-hover:scale-110 transition-transform">medical_services</span>
+<span class="text-xs font-semibold text-slate-700">Health</span>
+</a>
+<a class="flex flex-col items-center justify-center p-4 rounded-lg bg-slate-50 hover:bg-slate-100 border border-transparent hover:border-primary/20 transition-all text-center group" href="#">
+<span class="material-symbols-outlined text-4xl text-slate-600 mb-2 group-hover:scale-110 transition-transform">folder_shared</span>
+<span class="text-xs font-semibold text-slate-700">HR Forms</span>
+</a>
+</div>
+</div>
+<!-- Recent Documents List -->
+<div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden flex flex-col">
+<div class="px-5 py-4 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
+<h4 class="font-bold text-slate-800 text-sm">Recent Downloads</h4>
+<button class="text-primary text-xs font-bold hover:underline">View All</button>
+</div>
+<div class="divide-y divide-slate-100">
+<div class="flex items-center gap-3 p-4 hover:bg-slate-50 transition-colors cursor-pointer">
+<div class="size-10 rounded bg-red-50 text-red-500 flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined">picture_as_pdf</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-semibold text-slate-800 truncate">Boeing 737 Ops Manual v2.1</p>
+<p class="text-xs text-slate-500">Updated 2 days ago</p>
+</div>
+<button class="text-slate-400 hover:text-cta">
+<span class="material-symbols-outlined">download</span>
+</button>
+</div>
+<div class="flex items-center gap-3 p-4 hover:bg-slate-50 transition-colors cursor-pointer">
+<div class="size-10 rounded bg-red-50 text-red-500 flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined">picture_as_pdf</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-semibold text-slate-800 truncate">Cabin Crew Handbook 2024</p>
+<p class="text-xs text-slate-500">Updated 1 week ago</p>
+</div>
+<button class="text-slate-400 hover:text-cta">
+<span class="material-symbols-outlined">download</span>
+</button>
+</div>
+<div class="flex items-center gap-3 p-4 hover:bg-slate-50 transition-colors cursor-pointer">
+<div class="size-10 rounded bg-blue-50 text-blue-500 flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined">description</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-semibold text-slate-800 truncate">Uniform Guidelines</p>
+<p class="text-xs text-slate-500">Updated 1 month ago</p>
+</div>
+<button class="text-slate-400 hover:text-cta">
+<span class="material-symbols-outlined">download</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Area -->
+<div class="mt-8 pt-8 border-t border-slate-200 text-center pb-8">
+<p class="text-slate-400 text-sm">© 2024 FlyEasy Aviation Group. All rights reserved.</p>
+<div class="flex justify-center gap-4 mt-2">
+<a class="text-xs text-slate-400 hover:text-primary" href="#">Privacy Policy</a>
+<a class="text-xs text-slate-400 hover:text-primary" href="#">Terms of Service</a>
+<a class="text-xs text-slate-400 hover:text-primary" href="#">Internal Support</a>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+</body></html>

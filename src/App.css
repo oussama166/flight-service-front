@@ -1,0 +1,39 @@
+
+/* Material ui config */
+@import '@fontsource/roboto/300.css';
+@import '@fontsource/roboto/400.css';
+@import '@fontsource/roboto/500.css';
+@import '@fontsource/roboto/700.css';
+
+/* Tailwind css config */
+@import "tailwindcss";
+
+
+@theme {
+    --font-display: "Roboto", "sans-serif";
+
+    --color-primary: #003366;
+    --color-accent-500: #FF6600;
+
+    --breakpoint-3xl: 120rem;
+
+
+    --radius-md: 0.25rem;
+    --radius-lg: 0.5rem;
+    --radius-xl: 0.75rem;
+    --radius-xxl: 1rem;
+    --radius-xxxl: 9999px;
+
+
+    --ease-fluid: cubic-bezier(0.3, 0, 0, 1);
+    --ease-snappy: cubic-bezier(0.2, 0, 0, 1);
+}
+
+/* Custom styles for seamless integration */
+.glass-nav {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 100%);
+}
+
+.search-shadow {
+    box-shadow: 0 20px 40px -5px rgba(0, 51, 102, 0.15);
+}

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FlyEasy - Email Verification</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#020066",
+                        "accent": "#FF6600",
+                        "accent-hover": "#E65C00",
+                        "background-light": "#f5f5f8",
+                        "background-dark": "#0f0f23",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.375rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 antialiased min-h-screen flex flex-col">
+<!-- Navbar -->
+<header class="w-full bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-16">
+<!-- Logo -->
+<div class="flex items-center gap-3">
+<div class="flex items-center justify-center w-8 h-8 rounded-lg bg-primary text-white">
+<span class="material-symbols-outlined text-[20px]">flight_takeoff</span>
+</div>
+<span class="text-xl font-bold tracking-tight text-primary dark:text-white">FlyEasy</span>
+</div>
+<!-- Help Link -->
+<div>
+<a class="text-sm font-medium text-slate-600 hover:text-primary dark:text-slate-400 dark:hover:text-white transition-colors" href="#">
+                        Need help?
+                    </a>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow flex items-center justify-center px-4 py-12 sm:px-6 lg:px-8 relative overflow-hidden">
+<!-- Abstract Background Decoration -->
+<div class="absolute inset-0 z-0 pointer-events-none opacity-50">
+<div class="absolute -top-[20%] -right-[10%] w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl"></div>
+<div class="absolute top-[40%] -left-[10%] w-[400px] h-[400px] bg-accent/5 rounded-full blur-3xl"></div>
+</div>
+<div class="w-full max-w-md bg-white dark:bg-slate-800 shadow-xl rounded-2xl overflow-hidden relative z-10 border border-slate-100 dark:border-slate-700">
+<!-- Hero Image / Icon Area -->
+<div class="relative h-48 bg-primary/5 dark:bg-slate-900/50 flex items-center justify-center flex-col gap-4">
+<!-- Decorative pattern overlay -->
+<div class="absolute inset-0 opacity-10 bg-[radial-gradient(#020066_1px,transparent_1px)] [background-size:16px_16px]"></div>
+<div class="relative w-20 h-20 bg-white dark:bg-slate-700 rounded-full flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-4xl text-accent">mark_email_unread</span>
+<div class="absolute -right-1 -bottom-1 w-7 h-7 bg-green-500 rounded-full border-4 border-white dark:border-slate-800 flex items-center justify-center">
+<span class="material-symbols-outlined text-sm text-white font-bold">check</span>
+</div>
+</div>
+</div>
+<!-- Content Area -->
+<div class="px-8 pt-8 pb-10 text-center">
+<h1 class="text-2xl font-bold text-primary dark:text-white mb-3">Check your inbox</h1>
+<p class="text-slate-600 dark:text-slate-300 text-base leading-relaxed mb-6">
+                    We've sent a secure verification link to <br/>
+<span class="font-semibold text-primary dark:text-blue-300">john.doe@example.com</span>
+</p>
+<div class="bg-blue-50 dark:bg-primary/20 rounded-lg p-4 mb-8 text-sm text-blue-800 dark:text-blue-100 flex gap-3 text-left">
+<span class="material-symbols-outlined flex-shrink-0 text-primary dark:text-blue-300">info</span>
+<p>Click the link in the email to verify your account. The link expires in 24 hours.</p>
+</div>
+<!-- Actions -->
+<div class="space-y-4">
+<button class="w-full flex items-center justify-center gap-2 bg-accent hover:bg-accent-hover text-white font-semibold py-3 px-6 rounded-lg transition-all shadow-md shadow-orange-500/20">
+<span class="material-symbols-outlined text-[20px]">login</span>
+                        Go to Login
+                    </button>
+<button class="w-full flex items-center justify-center gap-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 text-slate-700 dark:text-slate-200 font-medium py-3 px-6 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors group">
+<span class="material-symbols-outlined text-[20px] text-slate-500 group-hover:text-primary transition-colors">refresh</span>
+                        Resend Email
+                    </button>
+</div>
+<!-- Footer Links -->
+<div class="mt-8 pt-6 border-t border-slate-100 dark:border-slate-700">
+<p class="text-sm text-slate-500 dark:text-slate-400">
+                        Didn't receive the email? <br/>
+                        Check your spam folder or <a class="text-primary dark:text-blue-300 font-medium hover:underline" href="#">try another email address</a>.
+                    </p>
+</div>
+</div>
+</div>
+</main>
+<!-- Simple Footer -->
+<footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-6">
+<div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-slate-500 dark:text-slate-400">
+<p>© 2024 FlyEasy. All rights reserved.</p>
+<div class="flex gap-6">
+<a class="hover:text-primary dark:hover:text-white transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-primary dark:hover:text-white transition-colors" href="#">Terms of Service</a>
+</div>
+</div>
+</footer>
+</body></html>

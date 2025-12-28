@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FlyEasy - Secure Checkout</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Noto+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#003366", // Deep Navy Blue
+                        "accent": "#FF6600",  // Vibrant Orange
+                        "background-light": "#f5f7f8",
+                        "background-dark": "#0f1923",
+                        "text-main": "#0c141d",
+                        "text-secondary": "#4573a1",
+                        "border-color": "#cddbea",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "Noto Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for better aesthetics */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-main font-display antialiased min-h-screen flex flex-col overflow-x-hidden">
+<!-- Header -->
+<header class="bg-white border-b border-border-color sticky top-0 z-50">
+<div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between h-20">
+<!-- Logo -->
+<div class="flex items-center gap-3">
+<div class="text-primary">
+<span class="material-symbols-outlined text-4xl">travel_explore</span>
+</div>
+<h1 class="text-primary text-2xl font-black tracking-tight">FlyEasy</h1>
+</div>
+<!-- Navigation (Desktop) -->
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-text-main hover:text-primary font-medium text-sm transition-colors" href="#">Home</a>
+<a class="text-text-main hover:text-primary font-medium text-sm transition-colors" href="#">My Bookings</a>
+<a class="text-text-main hover:text-primary font-medium text-sm transition-colors" href="#">Help Center</a>
+</nav>
+<!-- User/Sign In -->
+<div class="flex items-center gap-4">
+<button class="hidden sm:flex items-center gap-2 text-text-main font-medium text-sm hover:text-primary transition-colors">
+<span class="material-symbols-outlined">account_circle</span>
+<span>Sign In</span>
+</button>
+<button class="md:hidden p-2 text-text-main">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow w-full max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
+<!-- Breadcrumbs -->
+<nav class="flex flex-wrap items-center gap-2 mb-8 text-sm">
+<a class="text-text-secondary hover:text-primary transition-colors" href="#">Search Flights</a>
+<span class="material-symbols-outlined text-text-secondary text-base">chevron_right</span>
+<a class="text-text-secondary hover:text-primary transition-colors" href="#">Select Flight</a>
+<span class="material-symbols-outlined text-text-secondary text-base">chevron_right</span>
+<span class="text-primary font-bold">Checkout</span>
+<span class="material-symbols-outlined text-text-secondary text-base">chevron_right</span>
+<span class="text-gray-400">Confirmation</span>
+</nav>
+<div class="flex flex-col lg:flex-row gap-8 xl:gap-12 relative">
+<!-- Left Column: Forms -->
+<div class="flex-1 flex flex-col gap-6">
+<!-- Page Heading -->
+<div class="mb-2">
+<h2 class="text-3xl md:text-4xl font-black text-primary tracking-tight mb-2">Secure Checkout</h2>
+<p class="text-text-secondary">Complete your booking details below. Your payment is encrypted and secure.</p>
+</div>
+<!-- Passenger Information Card -->
+<div class="bg-white rounded-xl border border-border-color shadow-sm overflow-hidden p-6 md:p-8">
+<div class="flex items-center gap-3 mb-6 border-b border-gray-100 pb-4">
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">person</span>
+</div>
+<h3 class="text-xl font-bold text-primary">Passenger Information</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- Title -->
+<div class="md:col-span-2">
+<label class="block text-sm font-medium text-text-main mb-2">Title</label>
+<div class="relative">
+<select class="w-full h-12 px-4 rounded-lg border-border-color bg-slate-50 focus:ring-2 focus:ring-primary/20 focus:border-primary text-text-main appearance-none cursor-pointer">
+<option>Mr</option>
+<option>Mrs</option>
+<option>Ms</option>
+<option>Dr</option>
+</select>
+<div class="absolute inset-y-0 right-0 flex items-center px-3 pointer-events-none text-text-secondary">
+<span class="material-symbols-outlined">expand_more</span>
+</div>
+</div>
+</div>
+<!-- First Name -->
+<div class="md:col-span-5">
+<label class="block text-sm font-medium text-text-main mb-2">First Name</label>
+<input class="w-full h-12 px-4 rounded-lg border-border-color bg-slate-50 focus:ring-2 focus:ring-primary/20 focus:border-primary text-text-main placeholder-text-secondary/60" placeholder="e.g. John" type="text"/>
+</div>
+<!-- Last Name -->
+<div class="md:col-span-5">
+<label class="block text-sm font-medium text-text-main mb-2">Last Name</label>
+<input class="w-full h-12 px-4 rounded-lg border-border-color bg-slate-50 focus:ring-2 focus:ring-primary/20 focus:border-primary text-text-main placeholder-text-secondary/60" placeholder="e.g. Doe" type="text"/>
+</div>
+<!-- Date of Birth -->
+<div class="md:col-span-6">
+<label class="block text-sm font-medium text-text-main mb-2">Date of Birth</label>
+<input class="w-full h-12 px-4 rounded-lg border-border-color bg-slate-50 focus:ring-2 focus:ring-primary/20 focus:border-primary text-text-main" type="date"/>
+</div>
+<!-- Passport Number -->
+<div class="md:col-span-6">
+<label class="block text-sm font-medium text-text-main mb-2">Passport Number</label>
+<input class="w-full h-12 px-4 rounded-lg border-border-color bg-slate-50 focus:ring-2 focus:ring-primary/20 focus:border-primary text-text-main placeholder-text-secondary/60" placeholder="e.g. A12345678" type="text"/>
+</div>
+</div>
+</div>
+<!-- Contact Details Card -->
+<div class="bg-white rounded-xl border border-border-color shadow-sm overflow-hidden p-6 md:p-8">
+<div class="flex items-center gap-3 mb-6 border-b border-gray-100 pb-4">
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">contact_mail</span>
+</div>
+<h3 class="text-xl font-bold text-primary">Contact Details</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div>
+<label class="block text-sm font-medium text-text-main mb-2">Email Address</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-text-secondary">mail</span>
+<input class="w-full h-12 pl-12 pr-4 rounded-lg border-border-color bg-slate-50 focus:ring-2 focus:ring-primary/20 focus:border-primary text-text-main placeholder-text-secondary/60" placeholder="john.doe@example.com" type="email"/>
+</div>
+<p class="mt-1 text-xs text-text-secondary">Your booking confirmation will be sent here.</p>
+</div>
+<div>
+<label class="block text-sm font-medium text-text-main mb-2">Phone Number</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-text-secondary">call</span>
+<input class="w-full h-12 pl-12 pr-4 rounded-lg border-border-color bg-slate-50 focus:ring-2 focus:ring-primary/20 focus:border-primary text-text-main placeholder-text-secondary/60" placeholder="+1 (555) 000-0000" type="tel"/>
+</div>
+</div>
+</div>
+</div>
+<!-- Payment Method Card -->
+<div class="bg-white rounded-xl border border-border-color shadow-sm overflow-hidden p-6 md:p-8">
+<div class="flex items-center justify-between mb-6 border-b border-gray-100 pb-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">credit_card</span>
+</div>
+<h3 class="text-xl font-bold text-primary">Payment Method</h3>
+</div>
+<div class="flex gap-2 opacity-70">
+<!-- Simple placeholders for payment icons -->
+<span class="material-symbols-outlined text-3xl text-gray-400">payments</span>
+<span class="material-symbols-outlined text-3xl text-gray-400">account_balance</span>
+</div>
+</div>
+<!-- Payment Tabs -->
+<div class="flex gap-4 mb-6">
+<button class="flex-1 py-3 px-4 rounded-lg border-2 border-primary bg-primary/5 text-primary font-bold text-sm flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-lg">credit_card</span>
+                            Credit / Debit Card
+                        </button>
+<button class="flex-1 py-3 px-4 rounded-lg border border-border-color hover:border-primary/50 text-text-secondary hover:text-primary font-medium text-sm flex items-center justify-center gap-2 transition-all">
+<span class="material-symbols-outlined text-lg">account_balance_wallet</span>
+                            PayPal
+                        </button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="md:col-span-2">
+<label class="block text-sm font-medium text-text-main mb-2">Card Number</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-text-secondary">lock</span>
+<input class="w-full h-12 pl-12 pr-4 rounded-lg border-border-color bg-slate-50 focus:ring-2 focus:ring-primary/20 focus:border-primary text-text-main placeholder-text-secondary/60 font-mono" placeholder="0000 0000 0000 0000" type="text"/>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-green-600">check_circle</span>
+</div>
+</div>
+<div>
+<label class="block text-sm font-medium text-text-main mb-2">Expiry Date</label>
+<input class="w-full h-12 px-4 rounded-lg border-border-color bg-slate-50 focus:ring-2 focus:ring-primary/20 focus:border-primary text-text-main placeholder-text-secondary/60" placeholder="MM / YY" type="text"/>
+</div>
+<div>
+<label class="block text-sm font-medium text-text-main mb-2">CVV / CVC</label>
+<div class="relative">
+<input class="w-full h-12 px-4 rounded-lg border-border-color bg-slate-50 focus:ring-2 focus:ring-primary/20 focus:border-primary text-text-main placeholder-text-secondary/60" placeholder="123" type="text"/>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-text-secondary cursor-pointer hover:text-primary" title="3 digits on back of card">help</span>
+</div>
+</div>
+<div class="md:col-span-2">
+<label class="block text-sm font-medium text-text-main mb-2">Name on Card</label>
+<input class="w-full h-12 px-4 rounded-lg border-border-color bg-slate-50 focus:ring-2 focus:ring-primary/20 focus:border-primary text-text-main placeholder-text-secondary/60" placeholder="Name as it appears on card" type="text"/>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Sidebar -->
+<div class="w-full lg:w-[380px] flex-shrink-0">
+<div class="sticky top-24 flex flex-col gap-6">
+<!-- Booking Summary Card -->
+<div class="bg-white rounded-xl border border-border-color shadow-lg overflow-hidden">
+<div class="bg-primary p-5 text-white flex justify-between items-center">
+<h3 class="font-bold text-lg">Booking Summary</h3>
+<span class="text-xs bg-white/20 px-2 py-1 rounded">One Way</span>
+</div>
+<!-- Flight Info -->
+<div class="p-5 border-b border-gray-100">
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-2">
+<div class="font-bold text-2xl text-primary">LHR</div>
+<span class="text-xs text-text-secondary">London</span>
+</div>
+<div class="flex flex-col items-center flex-1 px-4">
+<div class="w-full border-t-2 border-dashed border-gray-300 relative top-3"></div>
+<span class="material-symbols-outlined text-primary bg-white px-2 relative z-10">flight_takeoff</span>
+<span class="text-xs text-text-secondary mt-1">7h 20m</span>
+</div>
+<div class="flex items-center gap-2 flex-row-reverse text-right">
+<div class="font-bold text-2xl text-primary">JFK</div>
+<span class="text-xs text-text-secondary">New York</span>
+</div>
+</div>
+<div class="flex justify-between items-start text-sm mt-6 bg-slate-50 p-3 rounded-lg">
+<div class="flex gap-3">
+<div class="w-10 h-10 rounded bg-white shadow-sm flex items-center justify-center border border-gray-100 shrink-0">
+<!-- Airline Logo Placeholder -->
+<span class="material-symbols-outlined text-primary">airlines</span>
+</div>
+<div>
+<p class="font-bold text-text-main">British Airways</p>
+<p class="text-text-secondary text-xs">Flight BA117 • Economy</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-bold text-text-main">14 Oct</p>
+<p class="text-text-secondary text-xs">08:25 AM</p>
+</div>
+</div>
+</div>
+<!-- Price Breakdown -->
+<div class="p-5 bg-white">
+<div class="space-y-3 mb-6">
+<div class="flex justify-between text-sm text-text-secondary">
+<span>Adult x 1</span>
+<span class="font-medium text-text-main">$420.00</span>
+</div>
+<div class="flex justify-between text-sm text-text-secondary">
+<span>Taxes &amp; Fees</span>
+<span class="font-medium text-text-main">$65.50</span>
+</div>
+<div class="flex justify-between text-sm text-text-secondary">
+<span>Baggage (23kg)</span>
+<span class="font-medium text-text-main text-green-600">Free</span>
+</div>
+</div>
+<div class="border-t border-gray-100 pt-4 mb-6">
+<div class="flex justify-between items-end">
+<span class="text-base font-bold text-text-main">Total Amount</span>
+<span class="text-2xl font-black text-primary">$485.50</span>
+</div>
+<p class="text-xs text-text-secondary mt-1 text-right">Includes all taxes and surcharges</p>
+</div>
+<button class="w-full bg-accent hover:bg-orange-600 text-white font-bold py-4 px-6 rounded-xl shadow-lg shadow-orange-200 transition-all transform active:scale-[0.98] flex items-center justify-center gap-2 group">
+<span>Pay &amp; Book Now</span>
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+<div class="mt-4 flex items-center justify-center gap-2 text-xs text-text-secondary opacity-80">
+<span class="material-symbols-outlined text-sm">lock</span>
+<span>Secure SSL Encrypted Transaction</span>
+</div>
+</div>
+</div>
+<!-- Help Card -->
+<div class="bg-primary/5 rounded-xl border border-primary/10 p-5 flex items-start gap-4">
+<div class="bg-white p-2 rounded-full shadow-sm text-primary">
+<span class="material-symbols-outlined">support_agent</span>
+</div>
+<div>
+<h4 class="font-bold text-primary text-sm mb-1">Need help with your booking?</h4>
+<p class="text-xs text-text-secondary mb-2">Our travel experts are available 24/7 to assist you.</p>
+<a class="text-sm font-bold text-primary hover:underline" href="#">Call +1-800-FLY-EASY</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-white border-t border-border-color mt-auto">
+<div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 py-10">
+<div class="flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="text-sm text-text-secondary">
+                    © 2023 FlyEasy Inc. All rights reserved.
+                </div>
+<div class="flex gap-6">
+<a class="text-sm text-text-secondary hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="text-sm text-text-secondary hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="text-sm text-text-secondary hover:text-primary transition-colors" href="#">Cookie Settings</a>
+</div>
+<div class="flex items-center gap-3 opacity-60 grayscale hover:grayscale-0 transition-all">
+<!-- Simple representations of payment icons -->
+<div class="h-6 w-10 bg-gray-200 rounded flex items-center justify-center text-[10px] font-bold text-gray-500" data-alt="Visa Card Logo">VISA</div>
+<div class="h-6 w-10 bg-gray-200 rounded flex items-center justify-center text-[10px] font-bold text-gray-500" data-alt="Mastercard Logo">MC</div>
+<div class="h-6 w-10 bg-gray-200 rounded flex items-center justify-center text-[10px] font-bold text-gray-500" data-alt="Amex Logo">AMEX</div>
+</div>
+</div>
+</div>
+</footer>
+</body></html>

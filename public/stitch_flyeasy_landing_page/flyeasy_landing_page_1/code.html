@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FlyEasy - Book Flights Easily</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#003366",
+                        "accent": "#FF6600",
+                        "background-light": "#f5f7f8",
+                        "background-dark": "#0f1923",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "0.75rem", "xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom date input styling to match design */
+        input[type="date"]::-webkit-calendar-picker-indicator {
+            filter: invert(0.2) sepia(0.5) saturate(5) hue-rotate(200deg);
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white antialiased">
+<!-- Navigation -->
+<header class="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/95 backdrop-blur-sm dark:border-slate-800 dark:bg-slate-900/95">
+<div class="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+<div class="flex items-center gap-2">
+<div class="flex size-10 items-center justify-center rounded-lg bg-primary text-white">
+<span class="material-symbols-outlined !text-2xl">flight_takeoff</span>
+</div>
+<span class="text-xl font-bold tracking-tight text-primary dark:text-white">FlyEasy</span>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-sm font-medium text-slate-600 hover:text-primary dark:text-slate-300 dark:hover:text-white transition-colors" href="#">Flights</a>
+<a class="text-sm font-medium text-slate-600 hover:text-primary dark:text-slate-300 dark:hover:text-white transition-colors" href="#">Hotels</a>
+<a class="text-sm font-medium text-slate-600 hover:text-primary dark:text-slate-300 dark:hover:text-white transition-colors" href="#">Manage Booking</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="hidden text-sm font-medium text-primary hover:text-primary/80 dark:text-white md:block">Sign In</button>
+<button class="flex h-10 items-center justify-center rounded-lg bg-primary px-5 text-sm font-bold text-white transition hover:bg-primary/90">
+                    Sign Up
+                </button>
+</div>
+</div>
+</header>
+<main>
+<!-- Hero Section -->
+<section class="relative min-h-[640px] w-full overflow-hidden bg-primary pb-32 pt-20 lg:pt-32">
+<!-- Background Image -->
+<div class="absolute inset-0 z-0">
+<img alt="Airplane wing view above fluffy clouds at sunset" class="h-full w-full object-cover opacity-30 mix-blend-overlay" data-alt="Airplane wing view above fluffy clouds at sunset" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCot3Jwaz4sADPo5Z4xohgSMmjnKEBwk_YIAaflZfPJIkCsceY0shkuKN5S8cRWTmIualoPFHVF4fhZoTzi7rZlwd1rrv8vVF3yT918pau2E1Ngp18-GFN-3p7jh9H0Bc9EjDuuVF6afe0XiGgy9wFVxI5UeGSC2sXjkhjX8f-AcLFr-4dglGArwq4W_XgGCc_C-gK_J7d562-xxIM6S2m_1gnJ6y0KMLoaMbefzr2_hwXdqGL-TT7Bkg2yK4cp9Bl_zOBPussq-5s"/>
+<div class="absolute inset-0 bg-gradient-to-b from-primary/80 to-primary/40"></div>
+</div>
+<div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+<h1 class="mx-auto max-w-4xl text-4xl font-black tracking-tight text-white sm:text-5xl lg:text-6xl">
+                    Explore the World with Ease
+                </h1>
+<p class="mx-auto mt-6 max-w-2xl text-lg text-slate-100/90 sm:text-xl">
+                    Book flights to over 5,000 destinations at the lowest prices. Experience seamless travel planning today.
+                </p>
+</div>
+<!-- Search Module -->
+<div class="relative z-20 mx-auto mt-16 max-w-5xl px-4 sm:px-6 lg:px-8">
+<div class="rounded-xl bg-white p-6 shadow-2xl shadow-primary/20 ring-1 ring-slate-900/5 dark:bg-slate-800 dark:ring-white/10">
+<!-- Trip Type Tabs -->
+<div class="mb-6 flex gap-6 border-b border-slate-200 pb-4 dark:border-slate-700">
+<label class="flex cursor-pointer items-center gap-2">
+<input checked="" class="h-4 w-4 border-slate-300 text-primary focus:ring-primary" name="tripType" type="radio" value="round-trip"/>
+<span class="text-sm font-medium text-slate-900 dark:text-white">Round trip</span>
+</label>
+<label class="flex cursor-pointer items-center gap-2">
+<input class="h-4 w-4 border-slate-300 text-primary focus:ring-primary" name="tripType" type="radio" value="one-way"/>
+<span class="text-sm font-medium text-slate-900 dark:text-white">One way</span>
+</label>
+<label class="flex cursor-pointer items-center gap-2">
+<input class="h-4 w-4 border-slate-300 text-primary focus:ring-primary" name="tripType" type="radio" value="multi-city"/>
+<span class="text-sm font-medium text-slate-900 dark:text-white">Multi-city</span>
+</label>
+</div>
+<!-- Search Inputs Grid -->
+<div class="grid grid-cols-1 gap-4 md:grid-cols-12 items-end">
+<!-- Origin & Destination -->
+<div class="relative grid grid-cols-1 gap-2 sm:grid-cols-2 md:col-span-5 md:gap-0">
+<div class="relative">
+<label class="absolute -top-2.5 left-3 z-10 bg-white px-1 text-xs font-semibold text-primary dark:bg-slate-800 dark:text-sky-400">From</label>
+<div class="flex h-14 w-full items-center rounded-lg border border-slate-300 bg-white pl-11 pr-3 focus-within:border-primary focus-within:ring-1 focus-within:ring-primary dark:border-slate-600 dark:bg-slate-900 md:rounded-r-none">
+<span class="material-symbols-outlined absolute left-3 text-slate-400">flight_takeoff</span>
+<input class="h-full w-full border-none bg-transparent p-0 text-slate-900 placeholder-slate-400 focus:ring-0 dark:text-white text-base font-medium" placeholder="City or Airport" type="text"/>
+<span class="text-xs font-bold text-slate-400">IATA</span>
+</div>
+</div>
+<div class="relative mt-2 sm:mt-0">
+<label class="absolute -top-2.5 left-3 z-10 bg-white px-1 text-xs font-semibold text-primary dark:bg-slate-800 dark:text-sky-400">To</label>
+<div class="flex h-14 w-full items-center rounded-lg border border-slate-300 bg-white pl-11 pr-3 focus-within:border-primary focus-within:ring-1 focus-within:ring-primary dark:border-slate-600 dark:bg-slate-900 md:rounded-l-none md:border-l-0">
+<span class="material-symbols-outlined absolute left-3 text-slate-400">flight_land</span>
+<input class="h-full w-full border-none bg-transparent p-0 text-slate-900 placeholder-slate-400 focus:ring-0 dark:text-white text-base font-medium" placeholder="City or Airport" type="text"/>
+<span class="text-xs font-bold text-slate-400">IATA</span>
+</div>
+<!-- Swap Button -->
+<button class="absolute -right-3 top-1/2 z-20 hidden size-8 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-slate-200 bg-white text-primary shadow-sm hover:bg-slate-50 dark:border-slate-600 dark:bg-slate-800 dark:text-white md:flex">
+<span class="material-symbols-outlined text-[18px]">sync_alt</span>
+</button>
+</div>
+</div>
+<!-- Dates -->
+<div class="grid grid-cols-2 gap-2 md:col-span-4">
+<div class="relative">
+<label class="absolute -top-2.5 left-3 z-10 bg-white px-1 text-xs font-semibold text-primary dark:bg-slate-800 dark:text-sky-400">Departure</label>
+<div class="flex h-14 w-full items-center rounded-lg border border-slate-300 bg-white px-3 focus-within:border-primary focus-within:ring-1 focus-within:ring-primary dark:border-slate-600 dark:bg-slate-900">
+<input class="h-full w-full border-none bg-transparent p-0 text-slate-900 placeholder-slate-400 focus:ring-0 dark:text-white text-sm font-medium" type="date"/>
+</div>
+</div>
+<div class="relative">
+<label class="absolute -top-2.5 left-3 z-10 bg-white px-1 text-xs font-semibold text-primary dark:bg-slate-800 dark:text-sky-400">Return</label>
+<div class="flex h-14 w-full items-center rounded-lg border border-slate-300 bg-white px-3 focus-within:border-primary focus-within:ring-1 focus-within:ring-primary dark:border-slate-600 dark:bg-slate-900">
+<input class="h-full w-full border-none bg-transparent p-0 text-slate-900 placeholder-slate-400 focus:ring-0 dark:text-white text-sm font-medium" type="date"/>
+</div>
+</div>
+</div>
+<!-- Passengers & Class -->
+<div class="md:col-span-3 flex flex-col gap-4">
+<div class="relative">
+<label class="absolute -top-2.5 left-3 z-10 bg-white px-1 text-xs font-semibold text-primary dark:bg-slate-800 dark:text-sky-400">Travelers &amp; Class</label>
+<button class="flex h-14 w-full items-center justify-between rounded-lg border border-slate-300 bg-white px-3 text-left focus:border-primary focus:ring-1 focus:ring-primary dark:border-slate-600 dark:bg-slate-900">
+<div class="flex flex-col truncate">
+<span class="text-sm font-bold text-slate-900 dark:text-white">1 Traveler</span>
+<span class="text-xs text-slate-500">Economy</span>
+</div>
+<span class="material-symbols-outlined text-slate-400">expand_more</span>
+</button>
+</div>
+</div>
+<!-- Search Button (Mobile/Tablet full width, Desktop aligned) -->
+<div class="md:col-span-12 mt-4 flex justify-end">
+<button class="w-full md:w-auto flex min-w-[200px] h-14 items-center justify-center gap-2 rounded-lg bg-accent px-8 text-base font-bold text-white shadow-lg shadow-orange-200 transition-all hover:bg-orange-600 hover:shadow-orange-300 dark:shadow-none">
+<span class="material-symbols-outlined">search</span>
+                                Search Flights
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Features Section -->
+<section class="py-16 md:py-24 bg-background-light dark:bg-background-dark">
+<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+<!-- Feature 1 -->
+<div class="flex flex-col items-center text-center p-6 rounded-xl bg-white dark:bg-slate-800 shadow-sm border border-slate-100 dark:border-slate-700">
+<div class="mb-4 flex size-16 items-center justify-center rounded-full bg-primary/10 text-primary dark:bg-white/10 dark:text-white">
+<span class="material-symbols-outlined !text-3xl">verified_user</span>
+</div>
+<h3 class="text-lg font-bold text-slate-900 dark:text-white">Best Price Guarantee</h3>
+<p class="mt-2 text-slate-600 dark:text-slate-300">Find a lower price? We'll match it. Book with confidence knowing you're getting the best deal.</p>
+</div>
+<!-- Feature 2 -->
+<div class="flex flex-col items-center text-center p-6 rounded-xl bg-white dark:bg-slate-800 shadow-sm border border-slate-100 dark:border-slate-700">
+<div class="mb-4 flex size-16 items-center justify-center rounded-full bg-primary/10 text-primary dark:bg-white/10 dark:text-white">
+<span class="material-symbols-outlined !text-3xl">support_agent</span>
+</div>
+<h3 class="text-lg font-bold text-slate-900 dark:text-white">24/7 Customer Support</h3>
+<p class="mt-2 text-slate-600 dark:text-slate-300">Our team is here to help you around the clock, ensuring a smooth journey from start to finish.</p>
+</div>
+<!-- Feature 3 -->
+<div class="flex flex-col items-center text-center p-6 rounded-xl bg-white dark:bg-slate-800 shadow-sm border border-slate-100 dark:border-slate-700">
+<div class="mb-4 flex size-16 items-center justify-center rounded-full bg-primary/10 text-primary dark:bg-white/10 dark:text-white">
+<span class="material-symbols-outlined !text-3xl">currency_exchange</span>
+</div>
+<h3 class="text-lg font-bold text-slate-900 dark:text-white">Easy Refunds</h3>
+<p class="mt-2 text-slate-600 dark:text-slate-300">Flexible booking options and hassle-free refunds make changing your plans stress-free.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Popular Destinations -->
+<section class="py-16 bg-white dark:bg-slate-900">
+<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+<div class="mb-10 flex items-end justify-between">
+<div>
+<h2 class="text-3xl font-bold text-slate-900 dark:text-white">Popular Destinations</h2>
+<p class="mt-2 text-slate-600 dark:text-slate-400">Trending flights booked by travelers this week.</p>
+</div>
+<a class="hidden text-sm font-bold text-primary hover:text-primary/80 dark:text-sky-400 sm:flex items-center gap-1" href="#">
+                        View all destinations
+                        <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+<!-- Card 1 -->
+<div class="group relative overflow-hidden rounded-xl bg-slate-100 dark:bg-slate-800 shadow-md transition hover:-translate-y-1 hover:shadow-xl">
+<div class="aspect-[4/3] w-full overflow-hidden">
+<img alt="Tropical beach resort with palm trees and blue water" class="h-full w-full object-cover transition duration-300 group-hover:scale-105" data-alt="Tropical beach resort with palm trees and blue water" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyRvLm9O7u5jsxJUXzIBVBqpUs7JiwCuqATCQD-qFuHijl5KPZd2nPmH_dOZyFTksnB2AaQatTOVGXVafgVh10A5cF_AZyzI1LT2SEjGXfyb9Mw1cNE1_QcroTIAeuecJ_TOzgGUGB7NOfu1LMcfVUlWCl1rFUVtbfYIwAiltiKDy_WrdNjGqCANReh7MEfoQtlKqos0bgk2jtgUmjO-gkop4WXytgpZVd9ED96MfYsvEuw7ab5WMJFybBWQuAozGtiP1gScTJTII"/>
+</div>
+<div class="p-4">
+<div class="flex items-start justify-between">
+<div>
+<h3 class="text-lg font-bold text-slate-900 dark:text-white">Maldives</h3>
+<p class="text-sm text-slate-500">MLE, Male Intl</p>
+</div>
+<span class="rounded-full bg-green-100 px-2.5 py-0.5 text-xs font-bold text-green-800 dark:bg-green-900 dark:text-green-200">
+                                    -20%
+                                </span>
+</div>
+<div class="mt-4 flex items-center justify-between">
+<p class="text-xs text-slate-500">Round trip from</p>
+<p class="text-xl font-bold text-primary dark:text-white">$850</p>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="group relative overflow-hidden rounded-xl bg-slate-100 dark:bg-slate-800 shadow-md transition hover:-translate-y-1 hover:shadow-xl">
+<div class="aspect-[4/3] w-full overflow-hidden">
+<img alt="Paris Eiffel Tower view from street level" class="h-full w-full object-cover transition duration-300 group-hover:scale-105" data-alt="Paris Eiffel Tower view from street level" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDg2hp0LDWkZ2DROZkv6XLqnQUySJb9edHe0mieu08n8Iw5hBetR__hTm6Pr-cLaH6v46onNmaRlH9eUhm-EktCJRTXU8umjMFVSkQ0a0_22H9xSs2po0_oy1MddMGGM-s8UfC7cUNuFp6UqZfyaWw2eGvLVhWhhy8mu4NoqqnILNf1iXpYs8OAhq3xJwIXxEmlrGPwKGJDMiLXcACYqPwJ6tVKCU-CW9KViC96vyHj2V5ZS74vjsCu837ai0yRTz7v2an8OQWvc-A"/>
+</div>
+<div class="p-4">
+<div class="flex items-start justify-between">
+<div>
+<h3 class="text-lg font-bold text-slate-900 dark:text-white">Paris</h3>
+<p class="text-sm text-slate-500">CDG, Charles de Gaulle</p>
+</div>
+</div>
+<div class="mt-4 flex items-center justify-between">
+<p class="text-xs text-slate-500">Round trip from</p>
+<p class="text-xl font-bold text-primary dark:text-white">$520</p>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="group relative overflow-hidden rounded-xl bg-slate-100 dark:bg-slate-800 shadow-md transition hover:-translate-y-1 hover:shadow-xl">
+<div class="aspect-[4/3] w-full overflow-hidden">
+<img alt="Tokyo street with neon signs at night" class="h-full w-full object-cover transition duration-300 group-hover:scale-105" data-alt="Tokyo street with neon signs at night" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBAJwkNeRYqCJlPZshzBPNAFXrm23jdRrWH279iFuHa-nKV05b3ND0x87CkbpWAZA-MHrXsDGmIu4KhdbsfipDJXshcAKNNiZdWzNpIqkEkUamMARR1ifQMnV64TiFl4Nb95Gqm0xepOBe0AZ7XAo0mUJrMbyveL_QkeguKUP3NDoGQwyjY75EEv3Mqzqjud3UyygP1al8RTAWh7uxJD1nekkdBjvIFblvlHrSfTleF1mSvBV96jS6pAxhzzMp5t_XkK_xUwVC9OKc"/>
+</div>
+<div class="p-4">
+<div class="flex items-start justify-between">
+<div>
+<h3 class="text-lg font-bold text-slate-900 dark:text-white">Tokyo</h3>
+<p class="text-sm text-slate-500">HND, Haneda</p>
+</div>
+<span class="rounded-full bg-blue-100 px-2.5 py-0.5 text-xs font-bold text-blue-800 dark:bg-blue-900 dark:text-blue-200">
+                                    New
+                                </span>
+</div>
+<div class="mt-4 flex items-center justify-between">
+<p class="text-xs text-slate-500">Round trip from</p>
+<p class="text-xl font-bold text-primary dark:text-white">$940</p>
+</div>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="group relative overflow-hidden rounded-xl bg-slate-100 dark:bg-slate-800 shadow-md transition hover:-translate-y-1 hover:shadow-xl">
+<div class="aspect-[4/3] w-full overflow-hidden">
+<img alt="New York City skyline with skyscrapers" class="h-full w-full object-cover transition duration-300 group-hover:scale-105" data-alt="New York City skyline with skyscrapers" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWR1YNdkXWPqjU4tni-qCQO28FwSzrWxW8eR7f_8uS7uuipRZnztb-87zHYr0QAnDjkzbW3wxzZSOraYMLGQY6uPcIRhbviQruHrDRzBIEDdg_8e4sSLUqgXDFoimZXSVD27oA6u2emKYknryF64BhrS8Ky1UUMCf6O9X6DW7FGO5SoR5TnOXbGIVAbhtrUNXVUbvOr2rpEVB8L5rWH-4hQH3iZ9_E5z-0PrVeN962TNk9oyc-vA1ypVusJzs2-cI05_EOfSODWUM"/>
+</div>
+<div class="p-4">
+<div class="flex items-start justify-between">
+<div>
+<h3 class="text-lg font-bold text-slate-900 dark:text-white">New York</h3>
+<p class="text-sm text-slate-500">JFK, John F. Kennedy</p>
+</div>
+</div>
+<div class="mt-4 flex items-center justify-between">
+<p class="text-xs text-slate-500">Round trip from</p>
+<p class="text-xl font-bold text-primary dark:text-white">$380</p>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-8 flex justify-center sm:hidden">
+<a class="text-sm font-bold text-primary hover:text-primary/80 dark:text-sky-400 flex items-center gap-1" href="#">
+                        View all destinations
+                        <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+</div>
+</section>
+<!-- Newsletter / CTA Section -->
+<section class="relative overflow-hidden bg-primary py-16">
+<div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/world-map.png')] opacity-10"></div>
+<div class="relative z-10 mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+<span class="mb-4 inline-block rounded-full bg-white/10 px-4 py-1.5 text-sm font-medium text-white backdrop-blur-sm">
+                    Don't miss out
+                </span>
+<h2 class="text-3xl font-black tracking-tight text-white sm:text-4xl">
+                    Get the latest flight deals straight to your inbox
+                </h2>
+<p class="mx-auto mt-4 max-w-2xl text-lg text-slate-200">
+                    Join over 1 million travelers who save on their flights with FlyEasy alerts.
+                </p>
+<div class="mx-auto mt-8 flex max-w-md flex-col gap-3 sm:flex-row">
+<input class="flex-1 rounded-lg border-0 bg-white px-4 py-3 text-slate-900 placeholder-slate-500 focus:ring-2 focus:ring-accent dark:bg-white/90" placeholder="Enter your email address" type="email"/>
+<button class="rounded-lg bg-accent px-6 py-3 font-bold text-white shadow-lg transition hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-primary">
+                        Subscribe
+                    </button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-slate-900 py-12 text-slate-300">
+<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-2 gap-8 md:grid-cols-4 lg:grid-cols-5">
+<div class="col-span-2 lg:col-span-2">
+<div class="flex items-center gap-2 mb-4">
+<div class="flex size-8 items-center justify-center rounded-md bg-white text-primary">
+<span class="material-symbols-outlined text-lg">flight_takeoff</span>
+</div>
+<span class="text-xl font-bold text-white">FlyEasy</span>
+</div>
+<p class="max-w-xs text-sm leading-relaxed text-slate-400">
+                        Making the world accessible to everyone. Book flights, hotels, and more with confidence and ease.
+                    </p>
+<div class="mt-6 flex gap-4">
+<a class="text-slate-400 hover:text-white" href="#"><span class="sr-only">Facebook</span><svg class="h-6 w-6" fill="currentColor" viewbox="0 0 24 24"><path clip-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" fill-rule="evenodd"></path></svg></a>
+<a class="text-slate-400 hover:text-white" href="#"><span class="sr-only">Twitter</span><svg class="h-6 w-6" fill="currentColor" viewbox="0 0 24 24"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path></svg></a>
+<a class="text-slate-400 hover:text-white" href="#"><span class="sr-only">Instagram</span><svg class="h-6 w-6" fill="currentColor" viewbox="0 0 24 24"><path clip-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772 4.902 4.902 0 011.772-1.153c.636-.247 1.363-.416 2.427-.465C9.673 2.013 10.03 2 12.315 2zm-1.087 1.775h-.25c-2.585 0-2.905.01-3.916.056-.998.045-1.536.204-1.895.344-.47.182-.803.4-1.15.747-.348.347-.565.68-.748 1.15-.14.358-.298.897-.343 1.894-.047 1.011-.057 1.332-.057 3.917v.25c0 2.585.01 2.905.056 3.916.045.998.204 1.536.344 1.895.182.47.4.803.747 1.15.347.348.68.565 1.15.748.358.14.897.298 1.894.343 1.011.047 1.332.057 3.917.057h.25c2.585 0 2.905-.01 3.916-.056.998-.045 1.536-.204 1.895-.344.47-.182.803-.4 1.15-.747.348-.347.565-.68.748-1.15.14-.358.298-.897.343-1.894.047-1.011.057-1.332.057-3.917v-.25c0-2.585-.01-2.905-.056-3.916-.045-.998-.204-1.536-.344-1.895-.182-.47-.4-.803-.747-1.15-.347-.348-.68-.565-1.15-.748-.14-.358-.298-.897-.343-1.894-.046-1.011-.056-1.331-.056-3.917zM12.315 7.026a4.978 4.978 0 110 9.956 4.978 4.978 0 010-9.956zm0 1.776a3.202 3.202 0 100 6.404 3.202 3.202 0 000-6.404zm7.042-4.144a1.182 1.182 0 110 2.364 1.182 1.182 0 010-2.364z" fill-rule="evenodd"></path></svg></a>
+</div>
+</div>
+<div>
+<h3 class="mb-4 text-sm font-semibold text-white uppercase tracking-wider">Company</h3>
+<ul class="space-y-3 text-sm">
+<li><a class="hover:text-white transition-colors" href="#">About Us</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Careers</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Blog</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Press</a></li>
+</ul>
+</div>
+<div>
+<h3 class="mb-4 text-sm font-semibold text-white uppercase tracking-wider">Support</h3>
+<ul class="space-y-3 text-sm">
+<li><a class="hover:text-white transition-colors" href="#">Help Center</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Terms of Service</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Privacy Policy</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Sitemap</a></li>
+</ul>
+</div>
+<div>
+<h3 class="mb-4 text-sm font-semibold text-white uppercase tracking-wider">Mobile</h3>
+<div class="flex flex-col gap-3">
+<a class="flex items-center gap-2 rounded-lg bg-slate-800 px-3 py-2 transition hover:bg-slate-700" href="#">
+<div class="text-left">
+<p class="text-[10px] uppercase text-slate-400">Download on the</p>
+<p class="text-sm font-bold text-white">App Store</p>
+</div>
+</a>
+<a class="flex items-center gap-2 rounded-lg bg-slate-800 px-3 py-2 transition hover:bg-slate-700" href="#">
+<div class="text-left">
+<p class="text-[10px] uppercase text-slate-400">Get it on</p>
+<p class="text-sm font-bold text-white">Google Play</p>
+</div>
+</a>
+</div>
+</div>
+</div>
+<div class="mt-12 border-t border-slate-800 pt-8 text-center text-sm text-slate-500">
+<p>© 2023 FlyEasy Inc. All rights reserved.</p>
+</div>
+</div>
+</footer>
+</body></html>

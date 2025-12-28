@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FlyEasy - Crew Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#003366",
+                        "primary-dark": "#002244",
+                        "cta": "#FF6600",
+                        "cta-hover": "#e65c00",
+                        "background-light": "#f0f4f8",
+                        "background-dark": "#0f172a",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "body": ["Roboto", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 overflow-x-hidden">
+<div class="relative flex h-screen w-full flex-row overflow-hidden">
+<aside class="flex h-full w-72 flex-col border-r border-slate-200 bg-white dark:bg-slate-900 dark:border-slate-800 transition-all hidden md:flex z-20 shadow-sm">
+<div class="flex h-20 items-center px-8 border-b border-slate-100 dark:border-slate-800">
+<div class="flex items-center gap-3">
+<div class="flex items-center justify-center size-10 rounded-lg bg-primary text-white">
+<span class="material-symbols-outlined">flight_takeoff</span>
+</div>
+<span class="text-xl font-bold text-primary dark:text-white tracking-tight">FlyEasy</span>
+</div>
+</div>
+<nav class="flex-1 overflow-y-auto py-6 px-4 flex flex-col gap-2">
+<a class="flex items-center gap-3 px-4 py-3 bg-primary/10 text-primary rounded-lg transition-colors dark:bg-primary/20 dark:text-white" href="#">
+<span class="material-symbols-outlined fill-1">dashboard</span>
+<span class="font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:text-primary hover:bg-slate-50 rounded-lg transition-colors dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white" href="#">
+<span class="material-symbols-outlined">calendar_month</span>
+<span class="font-medium">My Roster</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:text-primary hover:bg-slate-50 rounded-lg transition-colors dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white" href="#">
+<span class="material-symbols-outlined">campaign</span>
+<span class="font-medium">Announcements</span>
+<span class="ml-auto flex size-5 items-center justify-center rounded-full bg-cta text-[10px] font-bold text-white">2</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:text-primary hover:bg-slate-50 rounded-lg transition-colors dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white" href="#">
+<span class="material-symbols-outlined">description</span>
+<span class="font-medium">Documents</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:text-primary hover:bg-slate-50 rounded-lg transition-colors dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white" href="#">
+<span class="material-symbols-outlined">school</span>
+<span class="font-medium">Training</span>
+</a>
+</nav>
+<div class="p-4 border-t border-slate-100 dark:border-slate-800">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:text-primary hover:bg-slate-50 rounded-lg transition-colors dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-medium">Settings</span>
+</a>
+<div class="mt-4 flex items-center gap-3 px-4">
+<div class="size-10 rounded-full bg-cover bg-center border-2 border-primary" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCgvYMtuTO6L8HaVkAsgzB5pTByrwfdH6nDxFu_wkVxTvwBpceUiDh_HVykC4WoqTmKjU5sAfkBU_oslKYrbMVaNwRkdb8tdMt2krZRWQ5SwnSGvUneSOO9FQpvKrJHiMVeHbIVkMfaCPBCMCvZKAba2uiLz76Z78TIocrz3MHahNCUnDXzwIsnu6NYlXwu-38TpaDVr_lSvauNxCZ33hWxr-zbRFqgQNo8I-61z-xavRM8cbemhe1U870u803WqQv4kBdfs71QIb4');"></div>
+<div class="flex flex-col">
+<span class="text-sm font-semibold text-slate-900 dark:text-white">Capt. Sarah J.</span>
+<span class="text-xs text-slate-500 dark:text-slate-400">Senior Pilot</span>
+</div>
+</div>
+</div>
+</aside>
+<main class="flex-1 flex flex-col h-full overflow-y-auto bg-background-light dark:bg-background-dark relative">
+<div class="md:hidden flex items-center justify-between p-4 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 sticky top-0 z-30">
+<div class="flex items-center gap-2 text-primary dark:text-white">
+<span class="material-symbols-outlined">flight_takeoff</span>
+<span class="font-bold">FlyEasy</span>
+</div>
+<button class="text-slate-500"><span class="material-symbols-outlined">menu</span></button>
+</div>
+<div class="flex-1 p-6 md:p-8 max-w-7xl mx-auto w-full">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+<div>
+<h1 class="text-2xl md:text-3xl font-black text-slate-900 dark:text-white tracking-tight">Good Morning, Sarah!</h1>
+<p class="text-slate-600 dark:text-slate-400 text-sm md:text-base mt-1">Here is your briefing for today, October 24th.</p>
+</div>
+<div class="flex items-center gap-3">
+<button class="flex items-center gap-2 px-4 py-2 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">
+<span class="material-symbols-outlined text-lg">notifications</span>
+<span class="text-sm font-medium">Alerts</span>
+</button>
+<button class="flex items-center gap-2 px-4 py-2 bg-cta text-white rounded-lg shadow-md hover:bg-cta-hover transition-colors font-medium">
+<span class="material-symbols-outlined text-lg">event_available</span>
+<span class="text-sm">Check-in</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<div class="lg:col-span-2 space-y-6">
+<section class="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 overflow-hidden">
+<div class="bg-primary px-6 py-4 flex items-center justify-between">
+<h2 class="text-white font-bold flex items-center gap-2">
+<span class="material-symbols-outlined">flight</span> Next Assignment
+                            </h2>
+<span class="bg-white/20 text-white text-xs px-2 py-1 rounded font-medium">Starts in 3h 15m</span>
+</div>
+<div class="p-6 md:p-8">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-6">
+<div class="flex-1">
+<div class="flex items-center gap-4 mb-2">
+<div class="text-4xl font-black text-slate-900 dark:text-white">LHR</div>
+<div class="flex flex-col items-center gap-1 w-24">
+<span class="text-xs text-slate-400 font-mono">FE-2049</span>
+<div class="h-0.5 w-full bg-slate-300 dark:bg-slate-600 relative">
+<div class="absolute -right-1 -top-1 size-2 rounded-full bg-slate-400"></div>
+<div class="absolute left-1/2 -top-2 -translate-x-1/2 bg-white dark:bg-slate-800 px-1">
+<span class="material-symbols-outlined text-primary text-sm rotate-90">flight</span>
+</div>
+</div>
+<span class="text-xs text-slate-500">7h 45m</span>
+</div>
+<div class="text-4xl font-black text-slate-900 dark:text-white">JFK</div>
+</div>
+<div class="flex justify-between w-full max-w-sm text-sm text-slate-500 dark:text-slate-400 px-1">
+<span>London Heathrow</span>
+<span>New York JFK</span>
+</div>
+</div>
+<div class="flex flex-col gap-1 text-right md:border-l md:border-slate-100 md:dark:border-slate-700 md:pl-6">
+<span class="text-xs text-slate-500 uppercase font-bold tracking-wider">Departure</span>
+<span class="text-xl font-bold text-slate-900 dark:text-white">14:30 GMT</span>
+<span class="text-sm text-cta font-medium">Gate A23</span>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 bg-slate-50 dark:bg-slate-900/50 p-4 rounded-xl border border-slate-100 dark:border-slate-700">
+<div>
+<span class="block text-xs text-slate-500 dark:text-slate-400 mb-1">Aircraft</span>
+<span class="block text-sm font-bold text-slate-800 dark:text-slate-200">Airbus A350-900</span>
+</div>
+<div>
+<span class="block text-xs text-slate-500 dark:text-slate-400 mb-1">Tail</span>
+<span class="block text-sm font-bold text-slate-800 dark:text-slate-200">G-XWBA</span>
+</div>
+<div>
+<span class="block text-xs text-slate-500 dark:text-slate-400 mb-1">Pax Load</span>
+<span class="block text-sm font-bold text-slate-800 dark:text-slate-200">320 / 331</span>
+</div>
+<div>
+<span class="block text-xs text-slate-500 dark:text-slate-400 mb-1">Crew</span>
+<div class="flex -space-x-2">
+<div class="size-6 rounded-full bg-slate-300 border border-white"></div>
+<div class="size-6 rounded-full bg-slate-400 border border-white"></div>
+<div class="size-6 rounded-full bg-slate-500 border border-white flex items-center justify-center text-[8px] text-white">+8</div>
+</div>
+</div>
+</div>
+<div class="mt-6 flex flex-wrap gap-3">
+<button class="flex-1 sm:flex-none px-4 py-2.5 rounded-lg border border-slate-200 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 text-sm font-medium flex items-center justify-center gap-2 transition-colors">
+<span class="material-symbols-outlined text-lg">description</span> Flight Plan
+                                </button>
+<button class="flex-1 sm:flex-none px-4 py-2.5 rounded-lg border border-slate-200 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 text-sm font-medium flex items-center justify-center gap-2 transition-colors">
+<span class="material-symbols-outlined text-lg">groups</span> Passenger Manifest
+                                </button>
+<button class="flex-1 sm:flex-none px-4 py-2.5 rounded-lg border border-slate-200 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 text-sm font-medium flex items-center justify-center gap-2 transition-colors">
+<span class="material-symbols-outlined text-lg">restaurant_menu</span> Service Notes
+                                </button>
+</div>
+</div>
+</section>
+<section class="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 p-6">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white">Upcoming Roster</h3>
+<a class="text-sm font-medium text-cta hover:text-cta-hover flex items-center gap-1" href="#">
+                                View Full Schedule <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+<div class="space-y-4">
+<div class="flex items-center p-4 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors border border-transparent hover:border-slate-100 dark:hover:border-slate-700">
+<div class="flex flex-col items-center justify-center w-14 h-14 bg-indigo-50 dark:bg-indigo-900/20 text-indigo-700 dark:text-indigo-400 rounded-lg mr-4">
+<span class="text-xs font-bold uppercase">Oct</span>
+<span class="text-xl font-black">26</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center gap-2 mb-1">
+<span class="font-bold text-slate-900 dark:text-white">JFK <span class="text-slate-400 mx-1">→</span> LHR</span>
+<span class="text-xs px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 font-medium">FE-2050</span>
+</div>
+<div class="text-sm text-slate-500">18:45 - 06:30 (+1) • Layover Return</div>
+</div>
+<div class="hidden sm:block">
+<span class="text-sm font-medium text-slate-600 dark:text-slate-400 bg-white dark:bg-slate-900 px-3 py-1 rounded-full border border-slate-200 dark:border-slate-700">Confirmed</span>
+</div>
+</div>
+<div class="flex items-center p-4 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors border border-transparent hover:border-slate-100 dark:hover:border-slate-700">
+<div class="flex flex-col items-center justify-center w-14 h-14 bg-amber-50 dark:bg-amber-900/20 text-amber-700 dark:text-amber-400 rounded-lg mr-4">
+<span class="text-xs font-bold uppercase">Oct</span>
+<span class="text-xl font-black">28</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center gap-2 mb-1">
+<span class="font-bold text-slate-900 dark:text-white">Standby Duty</span>
+</div>
+<div class="text-sm text-slate-500">06:00 - 14:00 • Home Base (LHR)</div>
+</div>
+<div class="hidden sm:block">
+<span class="text-sm font-medium text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-900/20 px-3 py-1 rounded-full">On Call</span>
+</div>
+</div>
+<div class="flex items-center p-4 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors border border-transparent hover:border-slate-100 dark:hover:border-slate-700">
+<div class="flex flex-col items-center justify-center w-14 h-14 bg-emerald-50 dark:bg-emerald-900/20 text-emerald-700 dark:text-emerald-400 rounded-lg mr-4">
+<span class="text-xs font-bold uppercase">Oct</span>
+<span class="text-xl font-black">30</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center gap-2 mb-1">
+<span class="font-bold text-slate-900 dark:text-white">Training Sim</span>
+</div>
+<div class="text-sm text-slate-500">09:00 - 13:00 • Training Center A</div>
+</div>
+<div class="hidden sm:block">
+<span class="text-sm font-medium text-slate-600 dark:text-slate-400 bg-white dark:bg-slate-900 px-3 py-1 rounded-full border border-slate-200 dark:border-slate-700">Scheduled</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+<div class="space-y-6">
+<div class="bg-primary rounded-2xl p-6 text-white shadow-lg shadow-primary/20">
+<h3 class="text-lg font-bold mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined">bolt</span> Quick Actions
+                        </h3>
+<div class="grid grid-cols-2 gap-3">
+<button class="bg-white/10 hover:bg-white/20 p-3 rounded-lg flex flex-col items-center justify-center gap-2 transition-colors">
+<span class="material-symbols-outlined text-2xl">event_busy</span>
+<span class="text-xs font-medium">Report Sick</span>
+</button>
+<button class="bg-white/10 hover:bg-white/20 p-3 rounded-lg flex flex-col items-center justify-center gap-2 transition-colors">
+<span class="material-symbols-outlined text-2xl">swap_horiz</span>
+<span class="text-xs font-medium">Swap Flight</span>
+</button>
+<button class="bg-white/10 hover:bg-white/20 p-3 rounded-lg flex flex-col items-center justify-center gap-2 transition-colors">
+<span class="material-symbols-outlined text-2xl">hotel</span>
+<span class="text-xs font-medium">Hotel Info</span>
+</button>
+<button class="bg-white/10 hover:bg-white/20 p-3 rounded-lg flex flex-col items-center justify-center gap-2 transition-colors">
+<span class="material-symbols-outlined text-2xl">support_agent</span>
+<span class="text-xs font-medium">Crew Support</span>
+</button>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 p-6">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-cta">campaign</span> Announcements
+                            </h3>
+</div>
+<div class="space-y-4">
+<div class="border-l-4 border-cta pl-4 py-1">
+<p class="text-xs text-slate-400 font-medium mb-1">Today, 09:00 AM</p>
+<h4 class="text-sm font-bold text-slate-900 dark:text-white mb-1">New Uniform Guidelines</h4>
+<p class="text-xs text-slate-600 dark:text-slate-400 line-clamp-2">Please review the updated uniform policy effective from November 1st. Mandatory for all cabin crew.</p>
+</div>
+<div class="border-l-4 border-slate-300 dark:border-slate-600 pl-4 py-1">
+<p class="text-xs text-slate-400 font-medium mb-1">Yesterday</p>
+<h4 class="text-sm font-bold text-slate-900 dark:text-white mb-1">JFK Terminal Change</h4>
+<p class="text-xs text-slate-600 dark:text-slate-400 line-clamp-2">Operations at JFK have moved to Terminal 4 for all international arrivals starting this week.</p>
+</div>
+</div>
+<button class="w-full mt-4 py-2 text-sm text-primary dark:text-blue-300 font-medium hover:underline">View all announcements</button>
+</div>
+<div class="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl shadow-sm p-6 text-white relative overflow-hidden">
+<div class="absolute -right-10 -top-10 size-32 bg-white/5 rounded-full blur-2xl"></div>
+<h3 class="text-sm font-bold uppercase tracking-wider text-slate-400 mb-4">Destination Weather</h3>
+<div class="flex items-center justify-between">
+<div>
+<div class="text-3xl font-black">New York</div>
+<div class="text-sm text-slate-400">JFK Intl. Airport</div>
+</div>
+<span class="material-symbols-outlined text-4xl text-yellow-400">partly_cloudy_day</span>
+</div>
+<div class="mt-4 flex items-end gap-2">
+<span class="text-4xl font-light">18°</span>
+<span class="text-lg mb-1 text-slate-400">C</span>
+</div>
+<div class="mt-4 pt-4 border-t border-white/10 flex justify-between text-xs text-slate-300">
+<span>Wind: 12kt NW</span>
+<span>Vis: 10km+</span>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-10 text-center py-6 border-t border-slate-200 dark:border-slate-800">
+<p class="text-slate-400 dark:text-slate-500 text-sm">© 2024 FlyEasy Inc. Internal Crew Portal.</p>
+</div>
+</div>
+</main>
+</div>
+
+</body></html>

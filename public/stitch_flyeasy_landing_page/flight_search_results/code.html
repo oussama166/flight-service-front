@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FlyEasy - Search Results</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#003366",
+                        "cta": "#FF6600",
+                        "cta-hover": "#E65C00",
+                        "background-light": "#f5f7f8",
+                        "background-dark": "#0f1923",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        /* Custom range slider styling */
+        input[type=range]::-webkit-slider-thumb {
+            pointer-events: all;
+            width: 20px;
+            height: 20px;
+            -webkit-appearance: none;
+            @apply bg-primary rounded-full shadow-md cursor-pointer border-2 border-white;
+            margin-top: -8px;
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            @apply w-full h-1 bg-gray-200 rounded-lg;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-[#0c141d] dark:text-white flex flex-col min-h-screen font-display">
+<!-- Navigation -->
+<header class="sticky top-0 z-50 bg-white dark:bg-[#1a2c3d] border-b border-[#e6edf4] dark:border-gray-700 px-4 md:px-10 py-3 shadow-sm">
+<div class="max-w-7xl mx-auto flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="text-primary dark:text-white">
+<span class="material-symbols-outlined text-3xl">flight_takeoff</span>
+</div>
+<h2 class="text-primary dark:text-white text-xl font-bold tracking-tight">FlyEasy</h2>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-primary dark:text-gray-300 hover:text-cta font-medium transition-colors" href="#">Flights</a>
+<a class="text-slate-600 dark:text-gray-400 hover:text-cta font-medium transition-colors" href="#">Hotels</a>
+<a class="text-slate-600 dark:text-gray-400 hover:text-cta font-medium transition-colors" href="#">Deals</a>
+<a class="text-slate-600 dark:text-gray-400 hover:text-cta font-medium transition-colors" href="#">My Trips</a>
+</nav>
+<div class="flex items-center gap-3">
+<button class="hidden md:flex items-center gap-2 text-primary dark:text-white font-semibold text-sm hover:bg-slate-100 dark:hover:bg-slate-800 px-3 py-2 rounded-lg transition-colors">
+<span class="material-symbols-outlined text-lg">language</span>
+<span>USD</span>
+</button>
+<button class="bg-primary hover:bg-[#002244] text-white px-5 py-2 rounded-lg text-sm font-bold transition-colors">
+                    Sign In
+                </button>
+</div>
+</div>
+</header>
+<!-- Search Modifier Bar -->
+<div class="bg-primary dark:bg-[#002244] text-white py-4 shadow-md">
+<div class="max-w-7xl mx-auto px-4 md:px-10">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2 text-sm text-gray-300 font-medium uppercase tracking-wide">
+<span>Round Trip</span>
+<span>•</span>
+<span>1 Adult</span>
+<span>•</span>
+<span>Economy</span>
+</div>
+<h1 class="text-xl md:text-2xl font-bold flex flex-wrap items-center gap-2">
+                        New York (JFK) 
+                        <span class="material-symbols-outlined text-xl">arrow_right_alt</span> 
+                        London (LHR)
+                        <span class="text-gray-400 font-light mx-2">|</span>
+<span class="text-lg font-medium">Sep 12 - Sep 19</span>
+</h1>
+</div>
+<button class="bg-white/10 hover:bg-white/20 text-white border border-white/30 px-4 py-2 rounded-lg text-sm font-bold flex items-center gap-2 w-fit transition-colors">
+<span class="material-symbols-outlined text-lg">edit</span>
+                    Edit Search
+                </button>
+</div>
+</div>
+</div>
+<!-- Main Content -->
+<main class="flex-1 max-w-7xl mx-auto w-full px-4 md:px-10 py-8 grid grid-cols-1 lg:grid-cols-4 gap-8">
+<!-- Filters Sidebar -->
+<aside class="lg:col-span-1 space-y-8">
+<div class="bg-white dark:bg-[#1a2c3d] rounded-xl shadow-sm border border-slate-200 dark:border-gray-700 p-5">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-lg font-bold text-primary dark:text-white">Filters</h3>
+<button class="text-sm text-slate-500 hover:text-cta font-medium">Reset</button>
+</div>
+<!-- Stops Filter -->
+<div class="space-y-3 mb-6">
+<h4 class="text-sm font-semibold text-slate-900 dark:text-gray-200 uppercase tracking-wider">Stops</h4>
+<label class="flex items-center justify-between cursor-pointer group">
+<div class="flex items-center gap-3">
+<input class="w-4 h-4 rounded border-gray-300 text-primary focus:ring-primary" type="checkbox"/>
+<span class="text-slate-700 dark:text-gray-300 group-hover:text-primary transition-colors">Non-stop</span>
+</div>
+<span class="text-xs font-medium bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-gray-400 px-2 py-1 rounded">from $650</span>
+</label>
+<label class="flex items-center justify-between cursor-pointer group">
+<div class="flex items-center gap-3">
+<input checked="" class="w-4 h-4 rounded border-gray-300 text-primary focus:ring-primary" type="checkbox"/>
+<span class="text-slate-700 dark:text-gray-300 group-hover:text-primary transition-colors">1 Stop</span>
+</div>
+<span class="text-xs font-medium bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-gray-400 px-2 py-1 rounded">from $450</span>
+</label>
+<label class="flex items-center justify-between cursor-pointer group">
+<div class="flex items-center gap-3">
+<input class="w-4 h-4 rounded border-gray-300 text-primary focus:ring-primary" type="checkbox"/>
+<span class="text-slate-700 dark:text-gray-300 group-hover:text-primary transition-colors">2+ Stops</span>
+</div>
+<span class="text-xs font-medium bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-gray-400 px-2 py-1 rounded">from $420</span>
+</label>
+</div>
+<hr class="border-slate-100 dark:border-gray-600 my-4"/>
+<!-- Price Range Filter -->
+<div class="space-y-4 mb-6">
+<h4 class="text-sm font-semibold text-slate-900 dark:text-gray-200 uppercase tracking-wider">Price Range</h4>
+<div class="relative pt-6 pb-2">
+<div class="flex justify-between text-xs text-slate-500 font-medium mb-2 absolute -top-1 w-full">
+<span>$400</span>
+<span>$2,500</span>
+</div>
+<!-- Simulated Range Slider Visual -->
+<div class="relative h-1 bg-slate-200 dark:bg-slate-600 rounded-full">
+<div class="absolute left-0 top-0 h-full bg-primary w-[60%] rounded-full"></div>
+<div class="absolute right-0 top-0 h-full bg-slate-200 dark:bg-slate-600 w-[20%] rounded-r-full"></div>
+<!-- Handles -->
+<div class="absolute top-1/2 -mt-2.5 left-[10%] w-5 h-5 bg-white border-2 border-primary rounded-full shadow cursor-pointer hover:scale-110 transition-transform"></div>
+<div class="absolute top-1/2 -mt-2.5 left-[60%] w-5 h-5 bg-white border-2 border-primary rounded-full shadow cursor-pointer hover:scale-110 transition-transform"></div>
+</div>
+<div class="flex justify-between mt-3 text-sm font-semibold text-primary dark:text-gray-200">
+<span>$450</span>
+<span>$1,500</span>
+</div>
+</div>
+</div>
+<hr class="border-slate-100 dark:border-gray-600 my-4"/>
+<!-- Airlines Filter -->
+<div class="space-y-3">
+<h4 class="text-sm font-semibold text-slate-900 dark:text-gray-200 uppercase tracking-wider">Airlines</h4>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="w-4 h-4 rounded border-gray-300 text-primary focus:ring-primary" type="checkbox"/>
+<span class="text-slate-700 dark:text-gray-300 group-hover:text-primary transition-colors">Delta Airlines</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="w-4 h-4 rounded border-gray-300 text-primary focus:ring-primary" type="checkbox"/>
+<span class="text-slate-700 dark:text-gray-300 group-hover:text-primary transition-colors">British Airways</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-4 h-4 rounded border-gray-300 text-primary focus:ring-primary" type="checkbox"/>
+<span class="text-slate-700 dark:text-gray-300 group-hover:text-primary transition-colors">Virgin Atlantic</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-4 h-4 rounded border-gray-300 text-primary focus:ring-primary" type="checkbox"/>
+<span class="text-slate-700 dark:text-gray-300 group-hover:text-primary transition-colors">American Airlines</span>
+</label>
+</div>
+</div>
+</aside>
+<!-- Results List -->
+<div class="lg:col-span-3 flex flex-col gap-4">
+<!-- Sorting Tabs -->
+<div class="bg-white dark:bg-[#1a2c3d] rounded-xl shadow-sm border border-slate-200 dark:border-gray-700 p-1 flex overflow-x-auto">
+<button class="flex-1 py-3 px-4 rounded-lg bg-slate-100 dark:bg-slate-700 text-primary dark:text-white font-bold text-sm text-center min-w-[120px] transition-all border-b-2 border-cta">
+                    Cheapest<br/>
+<span class="text-xs font-normal text-slate-500 dark:text-gray-400">$450 • 12h 30m</span>
+</button>
+<button class="flex-1 py-3 px-4 rounded-lg text-slate-600 dark:text-gray-300 font-medium text-sm text-center hover:bg-slate-50 dark:hover:bg-slate-800 min-w-[120px] transition-colors">
+                    Best<br/>
+<span class="text-xs font-normal text-slate-400">$520 • 7h 00m</span>
+</button>
+<button class="flex-1 py-3 px-4 rounded-lg text-slate-600 dark:text-gray-300 font-medium text-sm text-center hover:bg-slate-50 dark:hover:bg-slate-800 min-w-[120px] transition-colors">
+                    Quickest<br/>
+<span class="text-xs font-normal text-slate-400">$650 • 6h 50m</span>
+</button>
+</div>
+<!-- Flight Card 1 (Selected/Best) -->
+<div class="bg-white dark:bg-[#1a2c3d] rounded-xl shadow-sm border border-slate-200 dark:border-gray-700 p-0 hover:shadow-md transition-shadow group">
+<div class="p-5 md:p-6 grid grid-cols-1 md:grid-cols-4 gap-6 items-center">
+<!-- Airline Info -->
+<div class="md:col-span-1 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center text-white font-bold text-xs" data-alt="Delta Logo">DL</div>
+<div>
+<p class="font-bold text-slate-900 dark:text-white">Delta</p>
+<p class="text-xs text-slate-500">Flight 405</p>
+</div>
+</div>
+<!-- Flight Path -->
+<div class="md:col-span-2 flex flex-col gap-1">
+<div class="flex justify-between items-end mb-1">
+<div class="text-left">
+<p class="text-xl font-bold text-slate-900 dark:text-white">10:00 AM</p>
+<p class="text-sm font-medium text-slate-500">JFK</p>
+</div>
+<div class="flex-1 px-4 pb-2 flex flex-col items-center">
+<p class="text-xs text-slate-500 mb-1">7h 00m</p>
+<div class="w-full h-[2px] bg-slate-300 relative">
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white dark:bg-[#1a2c3d] px-1">
+<span class="material-symbols-outlined text-slate-400 text-sm rotate-90">flight</span>
+</div>
+<div class="absolute w-2 h-2 rounded-full bg-slate-300 left-0 top-1/2 -translate-y-1/2"></div>
+<div class="absolute w-2 h-2 rounded-full bg-slate-300 right-0 top-1/2 -translate-y-1/2"></div>
+</div>
+<p class="text-xs text-emerald-600 font-medium mt-1">Non-stop</p>
+</div>
+<div class="text-right">
+<p class="text-xl font-bold text-slate-900 dark:text-white">5:00 PM</p>
+<p class="text-sm font-medium text-slate-500">LHR</p>
+</div>
+</div>
+</div>
+<!-- Price & CTA -->
+<div class="md:col-span-1 flex flex-row md:flex-col items-center md:items-end justify-between md:justify-center gap-1 border-t md:border-t-0 border-slate-100 pt-4 md:pt-0">
+<div class="text-right">
+<p class="text-2xl font-bold text-primary dark:text-white">$650</p>
+<p class="text-xs text-slate-500 mb-3">Round trip</p>
+</div>
+<button class="bg-cta hover:bg-cta-hover text-white font-bold py-2.5 px-6 rounded-lg shadow-sm transition-colors w-full md:w-auto">
+                            Select
+                        </button>
+</div>
+</div>
+<!-- Expanded details toggle (Visual only) -->
+<div class="bg-slate-50 dark:bg-slate-800/50 border-t border-slate-100 dark:border-gray-700 px-6 py-2 flex justify-between items-center rounded-b-xl">
+<span class="text-xs text-slate-500">Operated by Delta Airlines • Boeing 777</span>
+<button class="text-xs font-medium text-primary dark:text-blue-400 flex items-center gap-1">
+                       Flight Details <span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+</div>
+</div>
+<!-- Flight Card 2 -->
+<div class="bg-white dark:bg-[#1a2c3d] rounded-xl shadow-sm border border-slate-200 dark:border-gray-700 p-5 md:p-6 hover:shadow-md transition-shadow group">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6 items-center">
+<!-- Airline Info -->
+<div class="md:col-span-1 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-blue-900 flex items-center justify-center text-white font-bold text-xs" data-alt="British Airways Logo">BA</div>
+<div>
+<p class="font-bold text-slate-900 dark:text-white">British Airways</p>
+<p class="text-xs text-slate-500">Flight 112</p>
+</div>
+</div>
+<!-- Flight Path -->
+<div class="md:col-span-2 flex flex-col gap-1">
+<div class="flex justify-between items-end mb-1">
+<div class="text-left">
+<p class="text-xl font-bold text-slate-900 dark:text-white">6:30 PM</p>
+<p class="text-sm font-medium text-slate-500">JFK</p>
+</div>
+<div class="flex-1 px-4 pb-2 flex flex-col items-center">
+<p class="text-xs text-slate-500 mb-1">9h 45m</p>
+<div class="w-full h-[2px] bg-slate-300 relative">
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white dark:bg-[#1a2c3d] px-1">
+<span class="material-symbols-outlined text-slate-400 text-sm rotate-90">flight</span>
+</div>
+<div class="absolute w-2 h-2 rounded-full bg-slate-300 left-0 top-1/2 -translate-y-1/2"></div>
+<div class="absolute w-2 h-2 rounded-full bg-slate-300 right-0 top-1/2 -translate-y-1/2"></div>
+<!-- Stop Dot -->
+<div class="absolute w-2 h-2 rounded-full bg-red-400 border border-white left-[40%] top-1/2 -translate-y-1/2 z-10"></div>
+</div>
+<p class="text-xs text-red-500 font-medium mt-1">1 stop in CDG</p>
+</div>
+<div class="text-right">
+<p class="text-xl font-bold text-slate-900 dark:text-white">9:15 AM</p>
+<p class="text-sm font-medium text-slate-500">LHR <span class="text-xs text-red-500">+1</span></p>
+</div>
+</div>
+</div>
+<!-- Price & CTA -->
+<div class="md:col-span-1 flex flex-row md:flex-col items-center md:items-end justify-between md:justify-center gap-1 border-t md:border-t-0 border-slate-100 pt-4 md:pt-0">
+<div class="text-right">
+<p class="text-2xl font-bold text-primary dark:text-white">$580</p>
+<p class="text-xs text-slate-500 mb-3">Round trip</p>
+</div>
+<button class="bg-cta hover:bg-cta-hover text-white font-bold py-2.5 px-6 rounded-lg shadow-sm transition-colors w-full md:w-auto">
+                            Select
+                        </button>
+</div>
+</div>
+</div>
+<!-- Flight Card 3 -->
+<div class="bg-white dark:bg-[#1a2c3d] rounded-xl shadow-sm border border-slate-200 dark:border-gray-700 p-5 md:p-6 hover:shadow-md transition-shadow group">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6 items-center">
+<!-- Airline Info -->
+<div class="md:col-span-1 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-red-800 flex items-center justify-center text-white font-bold text-xs" data-alt="Virgin Atlantic Logo">VS</div>
+<div>
+<p class="font-bold text-slate-900 dark:text-white">Virgin Atlantic</p>
+<p class="text-xs text-slate-500">Flight 023</p>
+</div>
+</div>
+<!-- Flight Path -->
+<div class="md:col-span-2 flex flex-col gap-1">
+<div class="flex justify-between items-end mb-1">
+<div class="text-left">
+<p class="text-xl font-bold text-slate-900 dark:text-white">8:15 AM</p>
+<p class="text-sm font-medium text-slate-500">JFK</p>
+</div>
+<div class="flex-1 px-4 pb-2 flex flex-col items-center">
+<p class="text-xs text-slate-500 mb-1">7h 10m</p>
+<div class="w-full h-[2px] bg-slate-300 relative">
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white dark:bg-[#1a2c3d] px-1">
+<span class="material-symbols-outlined text-slate-400 text-sm rotate-90">flight</span>
+</div>
+<div class="absolute w-2 h-2 rounded-full bg-slate-300 left-0 top-1/2 -translate-y-1/2"></div>
+<div class="absolute w-2 h-2 rounded-full bg-slate-300 right-0 top-1/2 -translate-y-1/2"></div>
+</div>
+<p class="text-xs text-emerald-600 font-medium mt-1">Non-stop</p>
+</div>
+<div class="text-right">
+<p class="text-xl font-bold text-slate-900 dark:text-white">8:25 PM</p>
+<p class="text-sm font-medium text-slate-500">LHR</p>
+</div>
+</div>
+</div>
+<!-- Price & CTA -->
+<div class="md:col-span-1 flex flex-row md:flex-col items-center md:items-end justify-between md:justify-center gap-1 border-t md:border-t-0 border-slate-100 pt-4 md:pt-0">
+<div class="text-right">
+<p class="text-2xl font-bold text-primary dark:text-white">$685</p>
+<p class="text-xs text-slate-500 mb-3">Round trip</p>
+</div>
+<button class="bg-cta hover:bg-cta-hover text-white font-bold py-2.5 px-6 rounded-lg shadow-sm transition-colors w-full md:w-auto">
+                            Select
+                        </button>
+</div>
+</div>
+</div>
+<!-- Ad / Banner Space -->
+<div class="mt-4 rounded-xl bg-gradient-to-r from-indigo-900 to-primary p-6 md:p-8 text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-md" data-alt="Blue abstract gradient banner">
+<div>
+<h3 class="text-xl font-bold mb-2">FlyEasy Premium</h3>
+<p class="text-indigo-100 text-sm max-w-md">Get free cancellation on all flights and 2x points on every booking when you upgrade today.</p>
+</div>
+<button class="bg-white text-primary font-bold py-2 px-6 rounded-lg whitespace-nowrap hover:bg-slate-100 transition-colors">Learn More</button>
+</div>
+<div class="flex justify-center mt-6">
+<button class="text-primary dark:text-blue-400 font-bold text-sm hover:underline">Show more flights</button>
+</div>
+</div>
+</main>
+<!-- Footer Simple -->
+<footer class="bg-white dark:bg-[#1a2c3d] border-t border-slate-200 dark:border-gray-700 py-8 mt-10">
+<div class="max-w-7xl mx-auto px-10 text-center">
+<p class="text-slate-500 text-sm">© 2024 FlyEasy Inc. All rights reserved.</p>
+<div class="flex justify-center gap-6 mt-4 text-sm text-slate-500">
+<a class="hover:text-primary dark:hover:text-white" href="#">Privacy</a>
+<a class="hover:text-primary dark:hover:text-white" href="#">Terms</a>
+<a class="hover:text-primary dark:hover:text-white" href="#">Support</a>
+</div>
+</div>
+</footer>
+</body></html>

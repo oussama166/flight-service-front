@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FlyEasy - Flight Checkout</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#003366", // Deep Navy Blue
+                        "accent": "#FF6600", // Vibrant Orange
+                        "background-light": "#f5f7f8",
+                        "background-dark": "#0f1923",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+        }::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8; 
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#0c141d] antialiased">
+<header class="sticky top-0 z-50 bg-primary shadow-md border-b border-white/10">
+<div class="max-w-7xl mx-auto px-6 lg:px-8 h-20 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="size-8 bg-accent rounded-lg flex items-center justify-center text-white shadow-lg shadow-orange-600/20">
+<span class="material-symbols-outlined text-xl">flight_takeoff</span>
+</div>
+<span class="text-white text-xl font-bold tracking-tight">FlyEasy</span>
+</div>
+<div class="hidden md:flex items-center gap-4">
+<div class="flex items-center gap-2 text-white/60">
+<span class="size-6 rounded-full border border-white/30 flex items-center justify-center text-xs">1</span>
+<span class="text-sm font-medium">Search</span>
+</div>
+<div class="w-8 h-px bg-white/20"></div>
+<div class="flex items-center gap-2 text-white/60">
+<span class="size-6 rounded-full border border-white/30 flex items-center justify-center text-xs">2</span>
+<span class="text-sm font-medium">Select</span>
+</div>
+<div class="w-8 h-px bg-white/20"></div>
+<div class="flex items-center gap-2 text-white">
+<span class="size-6 rounded-full bg-accent text-white flex items-center justify-center text-xs font-bold shadow-lg shadow-orange-600/40">3</span>
+<span class="text-sm font-bold">Checkout</span>
+</div>
+</div>
+<div class="flex items-center gap-2 text-white/90">
+<span class="material-symbols-outlined text-lg">lock</span>
+<span class="text-sm font-semibold hidden sm:inline">Secure Checkout</span>
+</div>
+</div>
+</header>
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+<div class="lg:col-span-7 xl:col-span-8 space-y-6">
+<h1 class="text-2xl font-bold text-primary mb-6">Confirm and Pay</h1>
+<div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden ring-1 ring-primary/5">
+<div class="bg-primary/5 px-6 py-4 border-b border-primary/10 flex justify-between items-center">
+<div class="flex items-center gap-3">
+<span class="flex items-center justify-center size-8 rounded-full bg-primary/10 text-primary">
+<span class="material-symbols-outlined text-lg">person</span>
+</span>
+<h2 class="text-lg font-bold text-primary">Passenger Information</h2>
+</div>
+<span class="material-symbols-outlined text-primary transition-transform">expand_less</span>
+</div>
+<div class="p-6 md:p-8 space-y-8">
+<div class="flex gap-4 p-4 bg-blue-50 text-primary text-sm rounded-xl border border-blue-100 items-start">
+<span class="material-symbols-outlined text-xl shrink-0">info</span>
+<p class="leading-relaxed">Please ensure your name appears exactly as it does on your government-issued ID or passport to avoid issues at the airport.</p>
+</div>
+<div class="space-y-6">
+<h3 class="text-sm font-bold text-slate-400 uppercase tracking-wider">Primary Passenger</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+<div class="space-y-1.5">
+<label class="text-sm font-semibold text-slate-700">First Name</label>
+<input class="w-full border-slate-200 bg-slate-50 rounded-lg px-4 py-3 text-slate-900 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all placeholder:text-slate-400" placeholder="e.g. Jonathan" type="text"/>
+</div>
+<div class="space-y-1.5">
+<label class="text-sm font-semibold text-slate-700">Last Name</label>
+<input class="w-full border-slate-200 bg-slate-50 rounded-lg px-4 py-3 text-slate-900 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all placeholder:text-slate-400" placeholder="e.g. Smith" type="text"/>
+</div>
+<div class="space-y-1.5">
+<label class="text-sm font-semibold text-slate-700">Date of Birth</label>
+<input class="w-full border-slate-200 bg-slate-50 rounded-lg px-4 py-3 text-slate-500 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" type="date"/>
+</div>
+<div class="space-y-1.5">
+<label class="text-sm font-semibold text-slate-700">Gender</label>
+<div class="relative">
+<select class="w-full border-slate-200 bg-slate-50 rounded-lg px-4 py-3 text-slate-900 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all appearance-none">
+<option>Select gender</option>
+<option>Male</option>
+<option>Female</option>
+<option>Non-binary</option>
+</select>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none">expand_more</span>
+</div>
+</div>
+</div>
+</div>
+<div class="w-full h-px bg-slate-100"></div>
+<div class="space-y-6">
+<h3 class="text-sm font-bold text-slate-400 uppercase tracking-wider">Contact Details</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+<div class="space-y-1.5">
+<label class="text-sm font-semibold text-slate-700">Email Address</label>
+<input class="w-full border-slate-200 bg-slate-50 rounded-lg px-4 py-3 text-slate-900 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" placeholder="name@example.com" type="email"/>
+<p class="text-xs text-slate-500">Your booking confirmation will be sent here.</p>
+</div>
+<div class="space-y-1.5">
+<label class="text-sm font-semibold text-slate-700">Mobile Number</label>
+<input class="w-full border-slate-200 bg-slate-50 rounded-lg px-4 py-3 text-slate-900 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" placeholder="+1 (555) 000-0000" type="tel"/>
+</div>
+</div>
+</div>
+<div class="flex justify-end pt-2">
+<button class="px-6 py-3 bg-primary text-white font-semibold rounded-lg hover:bg-[#002855] transition-colors">
+                                Save &amp; Continue
+                             </button>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden hover:shadow-md transition-shadow cursor-pointer group">
+<div class="p-6 flex justify-between items-center">
+<div class="flex items-center gap-3">
+<span class="flex items-center justify-center size-8 rounded-full bg-slate-100 text-slate-500 group-hover:bg-blue-50 group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-lg">luggage</span>
+</span>
+<div>
+<h2 class="text-lg font-bold text-slate-700 group-hover:text-primary transition-colors">Baggage Options</h2>
+<p class="text-sm text-slate-500">Add checked bags or special equipment</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary transition-colors">expand_more</span>
+</div>
+</div>
+<div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden hover:shadow-md transition-shadow cursor-pointer group">
+<div class="p-6 flex justify-between items-center">
+<div class="flex items-center gap-3">
+<span class="flex items-center justify-center size-8 rounded-full bg-slate-100 text-slate-500 group-hover:bg-blue-50 group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-lg">airline_seat_recline_extra</span>
+</span>
+<div>
+<h2 class="text-lg font-bold text-slate-700 group-hover:text-primary transition-colors">Seat Selection</h2>
+<p class="text-sm text-slate-500">Choose your preferred seat</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary transition-colors">expand_more</span>
+</div>
+</div>
+<div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden hover:shadow-md transition-shadow cursor-pointer group">
+<div class="p-6 flex justify-between items-center">
+<div class="flex items-center gap-3">
+<span class="flex items-center justify-center size-8 rounded-full bg-slate-100 text-slate-500 group-hover:bg-blue-50 group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-lg">credit_card</span>
+</span>
+<div>
+<h2 class="text-lg font-bold text-slate-700 group-hover:text-primary transition-colors">Payment Method</h2>
+<p class="text-sm text-slate-500">Securely pay with Credit Card or PayPal</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary transition-colors">expand_more</span>
+</div>
+</div>
+<div class="flex items-center justify-center gap-2 text-slate-400 py-6">
+<span class="material-symbols-outlined text-lg">lock</span>
+<span class="text-xs font-medium">Your information is encrypted and secure.</span>
+</div>
+</div>
+<div class="lg:col-span-5 xl:col-span-4 relative h-full">
+<div class="sticky top-24 space-y-6">
+<div class="bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden">
+<div class="bg-primary p-5 text-white flex justify-between items-center">
+<h2 class="font-bold text-lg">Trip Summary</h2>
+<span class="text-xs font-medium bg-white/10 px-2 py-1 rounded">ID: #FE-8921</span>
+</div>
+<div class="p-6 border-b border-slate-100">
+<div class="flex items-center justify-between mb-4">
+<span class="text-xs font-bold text-accent uppercase tracking-wider bg-orange-50 px-2 py-1 rounded">Departing</span>
+<span class="text-xs font-semibold text-slate-500">Fri, Oct 24</span>
+</div>
+<div class="flex justify-between items-center mb-4">
+<div class="text-center">
+<div class="text-2xl font-black text-slate-800">NYC</div>
+<div class="text-xs text-slate-500 font-medium">10:30 AM</div>
+</div>
+<div class="flex-1 px-4 flex flex-col items-center">
+<div class="text-xs text-slate-400 mb-1">6h 45m</div>
+<div class="w-full h-px bg-slate-300 relative">
+<div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-slate-100 p-1 rounded-full">
+<span class="material-symbols-outlined text-slate-400 text-sm rotate-90">flight</span>
+</div>
+</div>
+<div class="text-xs text-slate-400 mt-1">Non-stop</div>
+</div>
+<div class="text-center">
+<div class="text-2xl font-black text-slate-800">LON</div>
+<div class="text-xs text-slate-500 font-medium">10:15 PM</div>
+</div>
+</div>
+<div class="flex items-center gap-2 text-xs text-slate-500">
+<span class="material-symbols-outlined text-base">airlines</span>
+<span>FlyEasy Airways • Economy Class</span>
+</div>
+</div>
+<div class="p-6 bg-slate-50/50 space-y-3">
+<div class="flex justify-between text-sm text-slate-600">
+<span>Ticket (1 Adult)</span>
+<span class="font-medium">$420.00</span>
+</div>
+<div class="flex justify-between text-sm text-slate-600">
+<span>Taxes &amp; Fees</span>
+<span class="font-medium">$85.00</span>
+</div>
+<div class="flex justify-between text-sm text-green-600">
+<span>Promo Code (FLY20)</span>
+<span class="font-medium">-$20.00</span>
+</div>
+<div class="my-4 border-t border-slate-200"></div>
+<div class="flex justify-between items-end">
+<span class="text-slate-900 font-bold">Total Price</span>
+<span class="text-3xl font-black text-primary">$485</span>
+</div>
+<p class="text-xs text-right text-slate-400">Includes all taxes and surcharges</p>
+</div>
+<div class="p-6 bg-white border-t border-slate-100">
+<button class="w-full bg-accent hover:bg-orange-600 text-white font-bold py-4 rounded-xl shadow-lg shadow-orange-500/25 transition-all transform hover:-translate-y-0.5 active:translate-y-0 flex justify-center items-center gap-2 group">
+<span>Complete Booking</span>
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+</div>
+<div class="bg-white rounded-xl p-4 shadow-sm border border-slate-200 flex items-start gap-4">
+<div class="size-10 rounded-full bg-blue-50 flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined">support_agent</span>
+</div>
+<div>
+<h4 class="font-bold text-slate-900 text-sm">Need assistance?</h4>
+<p class="text-xs text-slate-500 mt-1">Our team is available 24/7 to help you.</p>
+<a class="text-xs font-bold text-primary mt-2 inline-block hover:underline" href="#">Chat with us</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<footer class="bg-white border-t border-slate-200 py-10 mt-12">
+<div class="max-w-7xl mx-auto px-6 text-center">
+<div class="flex justify-center gap-6 mb-6 opacity-50 grayscale hover:grayscale-0 transition-all">
+<span class="font-bold text-slate-400 text-lg">VISA</span>
+<span class="font-bold text-slate-400 text-lg">Mastercard</span>
+<span class="font-bold text-slate-400 text-lg">PayPal</span>
+<span class="font-bold text-slate-400 text-lg">AMEX</span>
+</div>
+<p class="text-sm text-slate-400">© 2024 FlyEasy Inc. All rights reserved.</p>
+</div>
+</footer>
+
+</body></html>

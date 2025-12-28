@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FlyEasy - Crew Roster</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#003366",
+                        "primary-light": "#004c99", 
+                        "secondary": "#FF6600",
+                        "background-light": "#f5f7f8",
+                        "background-dark": "#0f1923",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1e293b",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "sans": ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom scrollbar for cleaner look */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen flex flex-col overflow-x-hidden">
+<!-- TopNavBar -->
+<header class="sticky top-0 z-50 w-full bg-surface-light dark:bg-surface-dark border-b border-slate-200 dark:border-slate-800 px-4 sm:px-6 lg:px-8 py-3 shadow-sm">
+<div class="flex items-center justify-between max-w-[1400px] mx-auto">
+<div class="flex items-center gap-4 text-primary dark:text-white">
+<div class="size-8 text-primary dark:text-white">
+<span class="material-symbols-outlined text-3xl">flight_takeoff</span>
+</div>
+<h2 class="text-primary dark:text-white text-xl font-black leading-tight tracking-tight">FlyEasy</h2>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-white text-sm font-medium transition-colors" href="#">Dashboard</a>
+<a class="text-primary dark:text-white text-sm font-bold leading-normal border-b-2 border-primary dark:border-white pb-0.5" href="#">Roster</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-white text-sm font-medium transition-colors" href="#">Training</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-white text-sm font-medium transition-colors" href="#">Manuals</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-white text-sm font-medium transition-colors" href="#">Resources</a>
+</nav>
+<div class="flex items-center gap-4">
+<div class="flex gap-2">
+<button class="flex size-10 cursor-pointer items-center justify-center rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="flex size-10 cursor-pointer items-center justify-center rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition-colors">
+<span class="material-symbols-outlined">forum</span>
+</button>
+</div>
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-10 border-2 border-white shadow-sm cursor-pointer" data-alt="Professional headshot of a female pilot in uniform" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDmxg7OaryUCknCHZbAhEbuKjLb0xop_kP6SBEczg5HUSrVAAKfeUym_HfzE3XGWTVGhQmU8-OApN4pY66X2tU9SQHcf7vFHB-0_VL_0zejGiTX8S9Ytf0IAdd0iUgfym0UFjnubsGMki_eNdVNX9X9BEctBWIq-1Qq_eHPpgAeu-cARN9MbwLYzpzevd-VvkJe6_H_Kw6zqsKbwW6FLrTKuLboHKuqGjBHN_W-uA0hpQdmw9BkEbN-MHtTwWlmLwHk3p623qrdEvM");'>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-1 w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
+<!-- Page Header & Stats -->
+<div class="flex flex-col gap-6 mb-8">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div class="flex flex-col gap-1">
+<h1 class="text-primary dark:text-white text-3xl md:text-4xl font-black leading-tight tracking-tight">Crew Roster &amp; Schedule</h1>
+<p class="text-slate-500 dark:text-slate-400 text-base font-medium flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">badge</span>
+                        Captain Sarah Jenkins - November 2023
+                    </p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-4 py-2 bg-white dark:bg-surface-dark border border-slate-200 dark:border-slate-700 rounded-lg shadow-sm hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors text-sm font-semibold text-primary dark:text-white">
+<span class="material-symbols-outlined text-lg">calendar_month</span>
+                        Sync Calendar
+                    </button>
+<button class="flex items-center gap-2 px-4 py-2 bg-secondary hover:bg-orange-600 text-white rounded-lg shadow-sm transition-colors text-sm font-bold">
+<span class="material-symbols-outlined text-lg">swap_horiz</span>
+                        Request Swap
+                    </button>
+</div>
+</div>
+<!-- Stats Cards -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<div class="bg-surface-light dark:bg-surface-dark p-5 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 flex items-start justify-between">
+<div>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium mb-1">Monthly Block Hours</p>
+<p class="text-slate-900 dark:text-white text-2xl font-bold">74h 30m</p>
+</div>
+<div class="p-2 bg-blue-50 dark:bg-blue-900/30 rounded-lg text-primary dark:text-blue-200">
+<span class="material-symbols-outlined">schedule</span>
+</div>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark p-5 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 flex items-start justify-between">
+<div>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium mb-1">Next Rest Period</p>
+<p class="text-slate-900 dark:text-white text-2xl font-bold">14 Nov <span class="text-sm font-normal text-slate-500">(Min 12h)</span></p>
+</div>
+<div class="p-2 bg-green-50 dark:bg-green-900/30 rounded-lg text-green-700 dark:text-green-300">
+<span class="material-symbols-outlined">hotel</span>
+</div>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark p-5 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 flex items-start justify-between">
+<div>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium mb-1">Upcoming Leave</p>
+<p class="text-slate-900 dark:text-white text-2xl font-bold">Dec 20 - 28</p>
+</div>
+<div class="p-2 bg-purple-50 dark:bg-purple-900/30 rounded-lg text-purple-700 dark:text-purple-300">
+<span class="material-symbols-outlined">flight_land</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Main Layout: Calendar + Sidebar -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 h-full min-h-[600px]">
+<!-- Left Column: Calendar (8 cols on lg) -->
+<div class="lg:col-span-8 flex flex-col gap-4">
+<!-- Toolbar -->
+<div class="bg-surface-light dark:bg-surface-dark p-3 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 flex flex-wrap items-center justify-between gap-4">
+<!-- Segmented Control -->
+<div class="flex p-1 bg-slate-100 dark:bg-slate-800 rounded-lg">
+<button class="px-4 py-1.5 rounded-md bg-white dark:bg-slate-700 shadow-sm text-primary dark:text-white text-sm font-bold transition-all">Calendar</button>
+<button class="px-4 py-1.5 rounded-md text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 text-sm font-medium transition-all">List View</button>
+</div>
+<!-- Month Navigation -->
+<div class="flex items-center gap-4">
+<button class="p-1 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-colors text-slate-600 dark:text-slate-400">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<span class="text-lg font-bold text-slate-900 dark:text-white">November 2023</span>
+<button class="p-1 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-colors text-slate-600 dark:text-slate-400">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+<!-- Time Toggle Chips -->
+<div class="flex items-center gap-2">
+<span class="text-xs font-semibold text-slate-400 uppercase tracking-wider mr-1">Timezone:</span>
+<button class="px-3 py-1 rounded-full bg-primary/10 text-primary dark:text-blue-300 text-xs font-bold border border-primary/20">UTC</button>
+<button class="px-3 py-1 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400 text-xs font-medium transition-colors">LCL</button>
+</div>
+</div>
+<!-- Calendar Grid -->
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 overflow-hidden flex-1 flex flex-col">
+<!-- Weekday Header -->
+<div class="grid grid-cols-7 border-b border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50">
+<div class="py-3 text-center text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Mon</div>
+<div class="py-3 text-center text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Tue</div>
+<div class="py-3 text-center text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Wed</div>
+<div class="py-3 text-center text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Thu</div>
+<div class="py-3 text-center text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Fri</div>
+<div class="py-3 text-center text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Sat</div>
+<div class="py-3 text-center text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Sun</div>
+</div>
+<!-- Days Grid -->
+<div class="grid grid-cols-7 grid-rows-5 flex-1 divide-x divide-y divide-slate-200 dark:divide-slate-700 h-[600px]">
+<!-- Previous Month -->
+<div class="p-2 bg-slate-50/50 dark:bg-slate-900/50 text-slate-400">
+<span class="text-sm font-medium">30</span>
+</div>
+<div class="p-2 bg-slate-50/50 dark:bg-slate-900/50 text-slate-400">
+<span class="text-sm font-medium">31</span>
+</div>
+<!-- Current Month -->
+<!-- Day 1: OFF -->
+<div class="p-2 relative group hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300">1</span>
+<div class="mt-2 w-full bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-[10px] font-bold px-1.5 py-0.5 rounded truncate">OFF</div>
+</div>
+<!-- Day 2: Training -->
+<div class="p-2 relative group hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300">2</span>
+<div class="mt-2 w-full bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 text-[10px] font-bold px-1.5 py-0.5 rounded truncate border-l-2 border-amber-500">SIM TRNG</div>
+</div>
+<!-- Day 3: Training -->
+<div class="p-2 relative group hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300">3</span>
+<div class="mt-2 w-full bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 text-[10px] font-bold px-1.5 py-0.5 rounded truncate border-l-2 border-amber-500">SIM TRNG</div>
+</div>
+<!-- Day 4: OFF -->
+<div class="p-2 relative group hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300">4</span>
+<div class="mt-2 w-full bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-[10px] font-bold px-1.5 py-0.5 rounded truncate">OFF</div>
+</div>
+<!-- Day 5: OFF -->
+<div class="p-2 relative group hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300">5</span>
+<div class="mt-2 w-full bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-[10px] font-bold px-1.5 py-0.5 rounded truncate">OFF</div>
+</div>
+<!-- Day 6: Standby -->
+<div class="p-2 relative group hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300">6</span>
+<div class="mt-2 w-full bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 text-[10px] font-bold px-1.5 py-0.5 rounded truncate border-l-2 border-purple-500">SBY 0600-1800</div>
+</div>
+<!-- Day 7: Standby -->
+<div class="p-2 relative group hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300">7</span>
+<div class="mt-2 w-full bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 text-[10px] font-bold px-1.5 py-0.5 rounded truncate border-l-2 border-purple-500">SBY 0600-1800</div>
+</div>
+<!-- Day 8: OFF -->
+<div class="p-2 relative group hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300">8</span>
+<div class="mt-2 w-full bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-[10px] font-bold px-1.5 py-0.5 rounded truncate">OFF</div>
+</div>
+<!-- Day 9: OFF -->
+<div class="p-2 relative group hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300">9</span>
+<div class="mt-2 w-full bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-[10px] font-bold px-1.5 py-0.5 rounded truncate">OFF</div>
+</div>
+<!-- Day 10: Flight -->
+<div class="p-2 relative group hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300">10</span>
+<div class="mt-2 w-full bg-primary text-white text-[10px] font-bold px-1.5 py-1 rounded shadow-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[10px]">flight_takeoff</span>
+                                FE 101
+                            </div>
+<div class="mt-1 text-[10px] text-slate-500 dark:text-slate-400 pl-1">LHR-JFK</div>
+</div>
+<!-- Day 11: Layover -->
+<div class="p-2 relative group hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300">11</span>
+<div class="mt-2 w-full bg-blue-100 dark:bg-blue-900/40 text-blue-800 dark:text-blue-200 text-[10px] font-bold px-1.5 py-0.5 rounded truncate border-l-2 border-blue-500">LAYOVER JFK</div>
+</div>
+<!-- Day 12: Flight (Selected) -->
+<div class="p-2 relative bg-blue-50 dark:bg-blue-900/20 ring-2 ring-primary ring-inset z-10">
+<span class="text-sm font-bold text-primary dark:text-blue-300">12</span>
+<div class="mt-2 w-full bg-primary text-white text-[10px] font-bold px-1.5 py-1 rounded shadow-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[10px]">flight_takeoff</span>
+                                FE 402
+                            </div>
+<div class="mt-1 text-[10px] text-slate-500 dark:text-slate-400 pl-1">JFK-LHR</div>
+</div>
+<!-- Day 13: Flight (Back) -->
+<div class="p-2 relative group hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300">13</span>
+<div class="mt-2 w-full bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-[10px] font-bold px-1.5 py-0.5 rounded truncate">REST</div>
+</div>
+<!-- Day 14: Rest -->
+<div class="p-2 relative group hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300">14</span>
+<div class="mt-2 w-full bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-[10px] font-bold px-1.5 py-0.5 rounded truncate">REST</div>
+</div>
+<!-- Fill remaining days generically -->
+<div class="p-2"><span class="text-sm font-medium text-slate-700 dark:text-slate-300">15</span></div>
+<div class="p-2"><span class="text-sm font-medium text-slate-700 dark:text-slate-300">16</span></div>
+<div class="p-2"><span class="text-sm font-medium text-slate-700 dark:text-slate-300">17</span></div>
+<div class="p-2"><span class="text-sm font-medium text-slate-700 dark:text-slate-300">18</span></div>
+<div class="p-2"><span class="text-sm font-medium text-slate-700 dark:text-slate-300">19</span></div>
+<div class="p-2 bg-green-50 dark:bg-green-900/10"><span class="text-sm font-medium text-slate-700 dark:text-slate-300">20</span><div class="mt-2 w-full bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 text-[10px] font-bold px-1.5 py-0.5 rounded truncate border-l-2 border-green-500">LEAVE</div></div>
+<div class="p-2 bg-green-50 dark:bg-green-900/10"><span class="text-sm font-medium text-slate-700 dark:text-slate-300">21</span><div class="mt-2 w-full bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 text-[10px] font-bold px-1.5 py-0.5 rounded truncate border-l-2 border-green-500">LEAVE</div></div>
+<div class="p-2 bg-green-50 dark:bg-green-900/10"><span class="text-sm font-medium text-slate-700 dark:text-slate-300">22</span><div class="mt-2 w-full bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 text-[10px] font-bold px-1.5 py-0.5 rounded truncate border-l-2 border-green-500">LEAVE</div></div>
+<div class="p-2 bg-green-50 dark:bg-green-900/10"><span class="text-sm font-medium text-slate-700 dark:text-slate-300">23</span><div class="mt-2 w-full bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 text-[10px] font-bold px-1.5 py-0.5 rounded truncate border-l-2 border-green-500">LEAVE</div></div>
+<div class="p-2 bg-green-50 dark:bg-green-900/10"><span class="text-sm font-medium text-slate-700 dark:text-slate-300">24</span><div class="mt-2 w-full bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 text-[10px] font-bold px-1.5 py-0.5 rounded truncate border-l-2 border-green-500">LEAVE</div></div>
+<div class="p-2 bg-green-50 dark:bg-green-900/10"><span class="text-sm font-medium text-slate-700 dark:text-slate-300">25</span><div class="mt-2 w-full bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 text-[10px] font-bold px-1.5 py-0.5 rounded truncate border-l-2 border-green-500">LEAVE</div></div>
+<div class="p-2 bg-green-50 dark:bg-green-900/10"><span class="text-sm font-medium text-slate-700 dark:text-slate-300">26</span><div class="mt-2 w-full bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 text-[10px] font-bold px-1.5 py-0.5 rounded truncate border-l-2 border-green-500">LEAVE</div></div>
+<div class="p-2 bg-green-50 dark:bg-green-900/10"><span class="text-sm font-medium text-slate-700 dark:text-slate-300">27</span><div class="mt-2 w-full bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 text-[10px] font-bold px-1.5 py-0.5 rounded truncate border-l-2 border-green-500">LEAVE</div></div>
+<div class="p-2 bg-green-50 dark:bg-green-900/10"><span class="text-sm font-medium text-slate-700 dark:text-slate-300">28</span><div class="mt-2 w-full bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 text-[10px] font-bold px-1.5 py-0.5 rounded truncate border-l-2 border-green-500">LEAVE</div></div>
+<div class="p-2"><span class="text-sm font-medium text-slate-700 dark:text-slate-300">29</span></div>
+<div class="p-2"><span class="text-sm font-medium text-slate-700 dark:text-slate-300">30</span></div>
+<div class="p-2 bg-slate-50/50 dark:bg-slate-900/50 text-slate-400"><span class="text-sm font-medium">1</span></div>
+<div class="p-2 bg-slate-50/50 dark:bg-slate-900/50 text-slate-400"><span class="text-sm font-medium">2</span></div>
+<div class="p-2 bg-slate-50/50 dark:bg-slate-900/50 text-slate-400"><span class="text-sm font-medium">3</span></div>
+</div>
+</div>
+</div>
+<!-- Right Column: Details Panel (4 cols on lg) -->
+<div class="lg:col-span-4 flex flex-col gap-4">
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl shadow-lg border border-slate-200 dark:border-slate-800 h-full flex flex-col overflow-hidden sticky top-24">
+<!-- Detail Header -->
+<div class="p-6 border-b border-slate-200 dark:border-slate-700 bg-gradient-to-br from-primary to-primary-light text-white relative overflow-hidden">
+<div class="relative z-10 flex justify-between items-start">
+<div>
+<p class="text-blue-100 text-sm font-medium mb-1">Sunday, 12 Nov</p>
+<h2 class="text-3xl font-black tracking-tight">FE 402</h2>
+</div>
+<span class="px-2 py-1 bg-white/20 backdrop-blur-sm rounded text-xs font-bold border border-white/30">ON TIME</span>
+</div>
+<div class="relative z-10 flex items-center gap-4 mt-6">
+<div>
+<p class="text-3xl font-bold">JFK</p>
+<p class="text-xs text-blue-200 uppercase">New York</p>
+</div>
+<div class="flex-1 flex flex-col items-center">
+<div class="w-full h-px bg-white/40 relative">
+<div class="absolute -top-1.5 left-1/2 -translate-x-1/2">
+<span class="material-symbols-outlined text-white text-sm rotate-90">flight</span>
+</div>
+</div>
+<p class="text-xs text-blue-100 mt-2">6h 50m</p>
+</div>
+<div class="text-right">
+<p class="text-3xl font-bold">LHR</p>
+<p class="text-xs text-blue-200 uppercase">London</p>
+</div>
+</div>
+<!-- Abstract pattern for visual interest -->
+<div class="absolute -bottom-10 -right-10 w-40 h-40 bg-white/10 rounded-full blur-2xl"></div>
+</div>
+<!-- Detail Content -->
+<div class="p-6 flex flex-col gap-6 flex-1 overflow-y-auto">
+<!-- Times -->
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-slate-50 dark:bg-slate-800 p-3 rounded-lg">
+<p class="text-xs text-slate-500 dark:text-slate-400 mb-1">Departure (UTC)</p>
+<p class="text-lg font-bold text-slate-900 dark:text-white">14:00</p>
+<p class="text-xs text-slate-400">Gate B14</p>
+</div>
+<div class="bg-slate-50 dark:bg-slate-800 p-3 rounded-lg">
+<p class="text-xs text-slate-500 dark:text-slate-400 mb-1">Arrival (UTC)</p>
+<p class="text-lg font-bold text-slate-900 dark:text-white">20:50</p>
+<p class="text-xs text-slate-400">Terminal 5</p>
+</div>
+</div>
+<!-- Aircraft Info -->
+<div class="flex items-center gap-3 p-3 border border-slate-100 dark:border-slate-700 rounded-lg">
+<div class="bg-blue-50 dark:bg-blue-900/20 p-2 rounded-md text-primary dark:text-blue-300">
+<span class="material-symbols-outlined">airlines</span>
+</div>
+<div>
+<p class="text-sm font-bold text-slate-900 dark:text-white">Boeing 787-9 Dreamliner</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">Reg: G-ZBKA</p>
+</div>
+</div>
+<!-- Crew List -->
+<div class="flex flex-col gap-3">
+<h3 class="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider flex items-center justify-between">
+                                Flight Crew
+                                <span class="text-xs font-normal text-slate-500 normal-case">8 Members</span>
+</h3>
+<div class="space-y-3">
+<!-- Crew Member 1 -->
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full bg-cover bg-center border border-slate-200 dark:border-slate-700" data-alt="Headshot of pilot John Doe" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDZahlj6_wCuq2JnFOQN933XRuwWBNeWHTIt-OdWYfr3gs5G6-2W8j6whMvaLrwgIlhM8zKgyRAgvwVU3V8046Vu1qkbBoZVb2VXT7sav7J47T5SWHG8KNGJJuboFYYBFJT9Hz4t1vjbY-k68nzKAJT37DmhQXk7DwfA7rWh9-vhh_f1km5hdqkvISKOlT-44OIoz7Knp0P2sX38ChkKnTQ-KeSa9EDCRv9P29J3fAm-pvBhg_7I4Jjls8Jvt9CIpcfNF4d-t7AdUo");'></div>
+<div class="flex-1">
+<p class="text-sm font-semibold text-slate-900 dark:text-white">Capt. John Doe</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">Commander</p>
+</div>
+<button class="text-slate-400 hover:text-primary dark:hover:text-blue-400"><span class="material-symbols-outlined text-lg">chat</span></button>
+</div>
+<!-- Crew Member 2 -->
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full bg-cover bg-center border border-slate-200 dark:border-slate-700" data-alt="Headshot of first officer Mike Smith" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBTYmWSsRHsmyiYjCPaa4MHPgZGod54Igtv4q0i8dvQlq-BvrH3X5z3209-ZI9_a4nw1gQhDw5gNWZkTYHpkPsgDRo2eAbNo0k9pdNkspr9g_An35Lp86grO5sCIOuX_CfkBfivFpQlrxqwzzMDgidu380oFs2nc9Rz3HDXRdbFqX7jHFyGgNAmrvRQfeLiOTEVAmDeSgcKYqHxHzUsSO-O1GXSX5TvjejAo31dHkjYf9ZE79N8bILyvSoi5b-rBj_hRZ3sEbKL3R4");'></div>
+<div class="flex-1">
+<p class="text-sm font-semibold text-slate-900 dark:text-white">FO Mike Smith</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">First Officer</p>
+</div>
+<button class="text-slate-400 hover:text-primary dark:hover:text-blue-400"><span class="material-symbols-outlined text-lg">chat</span></button>
+</div>
+<!-- Crew Member 3 -->
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full bg-cover bg-center border border-slate-200 dark:border-slate-700" data-alt="Headshot of cabin crew member Alice Johnson" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA1B6DEkMriDBzoPKaAR9eruvf_1I4Gy7qLw2iQPDV3JeFtNS28Q7AOCb4Lc2BjEic6qKFgr-zdcBbfQfmArrPLsp1IJuZ19bJ0luxhedz4uTs8OF6z0JhYfMZ0WF3hZzALjdH8VDVrj2B_5HJnP2hle5lRGfdFRmo01iEDOStaN23s2qpMMOdwotSMhrh7kg3KL09eILCi5F4Txlrny7kcNlgKztNeu4Pn3KQMEyefAz8VmgZfQR2exKQPvZPvBxL8Dyp3SHzElbY");'></div>
+<div class="flex-1">
+<p class="text-sm font-semibold text-slate-900 dark:text-white">Alice Johnson</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">Purser</p>
+</div>
+<button class="text-slate-400 hover:text-primary dark:hover:text-blue-400"><span class="material-symbols-outlined text-lg">chat</span></button>
+</div>
+<!-- More Crew -->
+<div class="flex items-center gap-3 pl-1">
+<div class="flex -space-x-3">
+<div class="size-8 rounded-full bg-slate-200 dark:bg-slate-700 border-2 border-white dark:border-slate-800 flex items-center justify-center text-xs font-bold text-slate-500">+5</div>
+</div>
+<p class="text-xs text-primary dark:text-blue-300 font-medium hover:underline cursor-pointer">View full crew list</p>
+</div>
+</div>
+</div>
+<!-- Actions Footer -->
+<div class="mt-auto pt-6 flex gap-3">
+<button class="flex-1 py-2.5 px-4 bg-secondary hover:bg-orange-600 text-white rounded-lg font-bold text-sm shadow-md transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-lg">free_cancellation</span>
+                                Request Leave
+                            </button>
+<button class="py-2.5 px-4 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-600 text-slate-700 dark:text-white rounded-lg font-bold text-sm shadow-sm transition-colors" title="Report Fatigue">
+<span class="material-symbols-outlined text-lg">bedtime</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

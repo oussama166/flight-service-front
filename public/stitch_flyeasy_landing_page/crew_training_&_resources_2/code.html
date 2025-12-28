@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sign In - FlyEasy</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#003366", // Deep Navy Blue
+              "primary-hover": "#002244",
+              "cta": "#FF6600",     // Vibrant Orange
+              "cta-hover": "#e65c00",
+              "background-light": "#f5f7f8",
+              "background-dark": "#0f1923",
+              "surface": "#ffffff",
+            },
+            fontFamily: {
+              "display": ["Inter", "sans-serif"]
+            },
+            borderRadius: {
+                "DEFAULT": "0.5rem",
+                "lg": "0.75rem",
+                "xl": "1rem",
+                "2xl": "1.5rem", 
+                "full": "9999px"
+            },
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-background-light text-slate-800 font-display antialiased h-screen w-full flex overflow-hidden">
+<div class="hidden lg:flex lg:w-1/2 bg-primary relative items-center justify-center overflow-hidden">
+<div class="absolute inset-0 bg-primary z-10 opacity-90 mix-blend-multiply"></div>
+<img alt="Airplane wing in sky" class="absolute inset-0 h-full w-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0NBbtAatYl9UKRNCMl8sTcLzVT6Nng_fnyAWzFaVfuhXQOPcKlcNuU5AFR5UoSOsU_xQFk7CnKEAM3BSslJQ4baML7ccVGMNiGVv5B6vCE4MdVtZuWL__IfUjaan5MjDneyUt3bf_cNT0f9eXHw3lHfUVp-sJTa0_aPcUz1oaiDrJcvmD99HbEdEJCb6sfM6RW514js0b17C6XrGbSFFMTn1Cll18Uo0fp_tjUMDkZppr2BthFN2nsc1uW7d5ZeCNZwuWna3jdjg"/>
+<div class="relative z-20 p-12 text-white max-w-xl">
+<div class="size-16 text-cta mb-8">
+<svg fill="currentColor" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M13.8261 30.5736C16.7203 29.8826 20.2244 29.4783 24 29.4783C27.7756 29.4783 31.2797 29.8826 34.1739 30.5736C36.9144 31.2278 39.9967 32.7669 41.3563 33.8352L24.8486 7.36089C24.4571 6.73303 23.5429 6.73303 23.1514 7.36089L6.64374 33.8352C8.00331 32.7669 11.0856 31.2278 13.8261 30.5736Z" fill="currentColor"></path>
+</svg>
+</div>
+<h1 class="text-5xl font-bold tracking-tight mb-6">Fly smarter, <br/>manage easier.</h1>
+<p class="text-lg text-slate-200 leading-relaxed">Experience the next generation of flight management. Streamlined workflows for crew, passengers, and operations.</p>
+<div class="mt-12 flex items-center gap-4">
+<div class="flex -space-x-4">
+<img alt="" class="w-10 h-10 rounded-full border-2 border-primary" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXJ72yKRD3ms38Ln5g7R5FY6rXFJVeCgU5PWJIriJwzTI0IK6kDjiRgEBJBgUSOdkK_oEeFI4xch_6r0pZ3wfke3A7sa5HCuA9tLGRvlIu8MzMznBLkuNxp24b4eFPt40C4tUxzyCXvxLYRhlIQCnJsG9An25ToHuE030noLL0kob2zt7X9ZZrPycEEyyIybE5EDlnAnRGyQI8nthdaNK2c_YjvMmdaLXznQCFtYVAIXZ1pTf3SaGr5FY91X9ktp3N0vuqZhoYCq4"/>
+<img alt="" class="w-10 h-10 rounded-full border-2 border-primary" src="https://lh3.googleusercontent.com/aida-public/AB6AXuArgGJNJMA9eEaMbzewdKBr4C-zKW_sfyiahbveTj6aW74Ni4EZ-hKYBXOQVnroA6pdRKAI6ojNBJbUGTEXSSgCzITIUQbSHjYsY3cku5S4R0aWtf1ee7Dx_pVUePZemv0rFsredFvCmO1Px1LK9mr74LECATK6hxoLe1sIvvx-gekY1ykNfYW4QE-iqQqYmQbsLZQS3xClpPwWubsjzMcAE5krMftkaYgg_39I1eSfvlS7HVNxtQbXGKOYFrUupU6vvGvfgI1thnY"/>
+<img alt="" class="w-10 h-10 rounded-full border-2 border-primary" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9g0wfzab7G_X9FEfLg3aqjlMuO1ThZMDEmXjPRsqNKizJ8iVdhTO231s7ptfkpPv5VbiHnJHSLmK-7cVUJ8bDRzdPWnGA9tYTamVnPDP2n38Tvmpjed8uZWyI2hW2eyh2YphIyQVj6XGVtfTAfcjpVOCoPu-IP06KZHX0KLlL0tBiYsuVAyFNyQfhXKIxR45tVS9lwVNxMOlR90S5cllqt2bOZ68F9-ah8_CxVqI8Qz52vsrP4w_BnY-0-yHqZxrUEXWm3KQxmjA"/>
+</div>
+<div class="text-sm font-medium text-slate-200">Trusted by 10,000+ Crew Members</div>
+</div>
+</div>
+</div>
+<div class="w-full lg:w-1/2 flex flex-col justify-center items-center p-6 sm:p-12 xl:p-24 bg-surface overflow-y-auto">
+<div class="w-full max-w-md space-y-8">
+<div class="lg:hidden flex items-center gap-2 mb-8">
+<div class="size-10 text-cta">
+<svg fill="currentColor" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M13.8261 30.5736C16.7203 29.8826 20.2244 29.4783 24 29.4783C27.7756 29.4783 31.2797 29.8826 34.1739 30.5736C36.9144 31.2278 39.9967 32.7669 41.3563 33.8352L24.8486 7.36089C24.4571 6.73303 23.5429 6.73303 23.1514 7.36089L6.64374 33.8352C8.00331 32.7669 11.0856 31.2278 13.8261 30.5736Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-2xl font-bold text-primary tracking-tight">FlyEasy</h2>
+</div>
+<div class="text-left">
+<h2 class="text-3xl font-bold text-slate-900 tracking-tight">Welcome back</h2>
+<p class="mt-2 text-slate-500">Please enter your details to sign in.</p>
+</div>
+<form action="#" class="mt-8 space-y-6" method="POST">
+<div class="space-y-5">
+<div>
+<label class="block text-sm font-medium text-slate-700" for="email">Email or Username</label>
+<div class="mt-1 relative rounded-md shadow-sm">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-slate-400 text-[20px]">mail</span>
+</div>
+<input autocomplete="email" class="block w-full pl-10 pr-3 py-3 border border-slate-300 rounded-lg leading-5 bg-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-cta focus:border-cta sm:text-sm transition duration-150 ease-in-out" id="email" name="email" placeholder="pilot@flyeasy.com" required="" type="email"/>
+</div>
+</div>
+<div>
+<label class="block text-sm font-medium text-slate-700" for="password">Password</label>
+<div class="mt-1 relative rounded-md shadow-sm">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-slate-400 text-[20px]">lock</span>
+</div>
+<input autocomplete="current-password" class="block w-full pl-10 pr-3 py-3 border border-slate-300 rounded-lg leading-5 bg-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-cta focus:border-cta sm:text-sm transition duration-150 ease-in-out" id="password" name="password" placeholder="••••••••" required="" type="password"/>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center">
+<input class="h-4 w-4 text-cta focus:ring-cta border-slate-300 rounded" id="remember-me" name="remember-me" type="checkbox"/>
+<label class="ml-2 block text-sm text-slate-600" for="remember-me">Remember me</label>
+</div>
+<div class="text-sm">
+<a class="font-medium text-cta hover:text-cta-hover" href="#">Forgot your password?</a>
+</div>
+</div>
+<div>
+<button class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-bold text-white bg-cta hover:bg-cta-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cta transition-colors" type="submit">
+                        Sign in
+                    </button>
+</div>
+<div class="relative mt-8">
+<div class="absolute inset-0 flex items-center">
+<div class="w-full border-t border-slate-200"></div>
+</div>
+<div class="relative flex justify-center text-sm">
+<span class="px-2 bg-surface text-slate-500">Or continue with</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-3 mt-6">
+<button class="flex items-center justify-center w-full px-4 py-2 border border-slate-300 rounded-lg shadow-sm bg-white text-sm font-medium text-slate-700 hover:bg-slate-50 transition-colors" type="button">
+<svg aria-hidden="true" class="h-5 w-5 mr-2" viewBox="0 0 24 24">
+<path d="M12.0003 20.45c-4.6667 0-8.45-3.7833-8.45-8.45 0-4.6667 3.7833-8.45 8.45-8.45 4.6667 0 8.45 3.7833 8.45 8.45 0 4.6667-3.7833 8.45-8.45 8.45Z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="1.5"></path>
+<path d="M12.0003 15.5833c-1.9725 0-3.5833-1.6108-3.5833-3.5833s1.6108-3.5833 3.5833-3.5833 3.5833 1.6108 3.5833 3.5833-1.6108 3.5833-3.5833 3.5833Z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="1.5"></path>
+</svg>
+                        SSO
+                    </button>
+<button class="flex items-center justify-center w-full px-4 py-2 border border-slate-300 rounded-lg shadow-sm bg-white text-sm font-medium text-slate-700 hover:bg-slate-50 transition-colors" type="button">
+<span class="material-symbols-outlined text-[20px] mr-2">qr_code</span>
+                        Crew Pass
+                    </button>
+</div>
+</form>
+<p class="mt-8 text-center text-sm text-slate-600">
+                Don't have an account?
+                <a class="font-medium text-primary hover:text-primary-hover" href="#">
+                    Create Account
+                </a>
+</p>
+</div>
+<div class="mt-auto pt-8">
+<p class="text-center text-xs text-slate-400">
+                © 2024 FlyEasy Aviation Group. Protected by reCAPTCHA.
+            </p>
+</div>
+</div>
+</body></html>
