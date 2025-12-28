@@ -2,6 +2,8 @@ import Icon from "@mui/material/Icon";
 import { type ChangeEvent, type FC, useState } from "react";
 import SearchInput from "./SearchInput";
 import { FlightLand, FlightTakeoff } from "@mui/icons-material";
+import { useAppDispatch, useAppSelector } from "../App/hooks";
+import { toggleSwap } from "../Features/Swap/swap-slice";
 
 type TripType = "ROUND_TRIP" | "ONE_WAY";
 
@@ -11,6 +13,11 @@ const SearchSection: FC = () => {
   const handleTripTypeChange = (e: ChangeEvent<HTMLInputElement>) => {
     setTripType(e.target.value as TripType);
   };
+
+  const swaped = useAppSelector((state) => state.swap.isSwapped);
+  const dispatch = useAppDispatch();
+
+
   return (
     <>
       {/*// <!-- Central Search Module -->*/}
@@ -76,17 +83,18 @@ const SearchSection: FC = () => {
               <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5 ml-1">
                 From
               </label>
-              <SearchInput icon={<FlightTakeoff fontSize="small" />} />
+              <SearchInput icon={<FlightTakeoff fontSize="small" />} isFrom={true} />
             </div>
             {/*// <!-- Swap Button (Absolute centered on desktop) -->*/}
             <button
               aria-label="Swap locations"
               className="hidden sm:flex absolute left-1/2 top-[60%] -translate-x-1/2 -translate-y-1/2 size-8 bg-white border border-slate-200 rounded-full items-center justify-center text-primary shadow-sm hover:bg-slate-50 hover:scale-110 transition-all z-10 aria-checked:transition-transform aria-checked:rotate-180 aria-checked:delay-500 aria-checked:ease-in-out cursor-pointer"
-              aria-checked={"false"}
+              aria-checked={swaped}
               onClick={(e) => {
                 let ariastate = e.currentTarget.getAttribute("aria-checked");
                 ariastate = ariastate === "true" ? "false" : "true";
                 e.currentTarget.setAttribute("aria-checked", ariastate);
+                dispatch(toggleSwap());
               }}
             >
               <Icon baseClassName="material-symbols-outlined text-lg">
@@ -98,7 +106,7 @@ const SearchSection: FC = () => {
               <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5 ml-1">
                 To
               </label>
-              <SearchInput icon={<FlightLand fontSize="small" />} />
+              <SearchInput icon={<FlightLand fontSize="small" />} isTo={true} />
             </div>
           </div>
           {/*// <!-- Dates -->*/}

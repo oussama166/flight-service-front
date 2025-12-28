@@ -1,17 +1,17 @@
 // DUCKS pattern
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 
 interface SwapState {
   isSwapped: boolean;
-  from: string;
-  to: string;
-  middleSwaper:string;
+  from: string | null;
+  to: string | null;
+  middleSwaper:string | null;
 }
 
 const initialState: SwapState = {
   isSwapped: false,
-  from: "",
-  to: "",
+  from: null,
+  to: null,
   middleSwaper: "",
 };
 
@@ -20,14 +20,20 @@ const swapSlice = createSlice({
   initialState,
   reducers: {
     // We will need the action for the amount data comming from the ui
-    toggleSwap: (state , action) => {
+    toggleSwap: (state ) => {
       state.isSwapped = !state.isSwapped;
       state.middleSwaper = state.from;
       state.from = state.to;
       state.to = state.middleSwaper;
     },
+    fromTakeoff: (state, action: PayloadAction<string>) => {
+      state.from = action.payload;
+    },
+    toLandOff: (state, action: PayloadAction<string>) => {
+      state.to = action.payload;
+    },
   },
 });
 
-export const { toggleSwap } = swapSlice.actions;
+export const { toggleSwap, fromTakeoff, toLandOff } = swapSlice.actions;
 export default swapSlice.reducer;
