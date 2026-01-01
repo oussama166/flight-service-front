@@ -1,6 +1,6 @@
-import SearchSection from "./SearchSection.tsx";
+import SearchSection from "../FeaturesUi/SearchSection.tsx";
 
-const Hero = () => (
+const HeroSection = () => (
     <div
         className="relative min-h-[95vh] flex flex-col items-center justify-center pt-20 pb-16 px-4 sm:px-6 lg:px-8 bg-primary">
         {/*// <!-- Background Image -->*/}
@@ -28,4 +28,4 @@ const Hero = () => (
     </div>
 );
 
-export default Hero;
+export default HeroSection;

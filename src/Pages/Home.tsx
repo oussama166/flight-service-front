@@ -1,5 +1,5 @@
-import Navbar from "../Compenents/Navbar.tsx";
-import Hero from "../Compenents/Hero.tsx";
+import Navbar from "../Compenents/Layouts/Navbar.tsx";
+import Hero from "../Compenents/Layouts/HeroSection.tsx";
 
 
 const Home = () => {
