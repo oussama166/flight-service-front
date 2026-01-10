@@ -11,7 +11,7 @@ const filterOptions = createFilterOptions({
   limit: 10, 
   stringify: (option: any) => {
 
-    console.error("🚀 ~ $:", $)
+    console.log("🚀 ~ $:", option.location, "");
     return `${option.location} ${option.name} ${option.code} ${option.country}`;
   },
 });
