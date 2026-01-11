@@ -1,5 +1,6 @@
 
 /* Material ui config */
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
 @import '@fontsource/roboto/300.css';
 @import '@fontsource/roboto/400.css';
 @import '@fontsource/roboto/500.css';
@@ -9,8 +10,10 @@
 @import "tailwindcss";
 
 
+
 @theme {
     --font-display: "Roboto", "sans-serif";
+    --font-pacifico: "Pacifico", cursive;
 
     --color-primary: #003366;
     --color-accent-500: #FF6600;

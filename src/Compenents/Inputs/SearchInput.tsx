@@ -3,57 +3,58 @@ import TextField from "@mui/material/TextField";
 import match from "autosuggest-highlight/match";
 import parse from "autosuggest-highlight/parse";
 
-import { fromTakeoff, toLandOff } from "../../Features/Swap/swap-slice";
 import { useAppDispatch, useAppSelector } from "../../App/hooks";
+import { useAirports } from "../../Features/Flights/hooks/useAirpots";
+import { fromTakeoff, toLandOff } from "../../Features/Swap/swap-slice";
 
 const filterOptions = createFilterOptions({
-  matchFrom: "any", 
-  limit: 10, 
+  matchFrom: "any",
+  limit: 10,
   stringify: (option: any) => {
-
-    console.log("🚀 ~ $:", option.location, "");
+    // console.log("🚀 ~ $:", option.location, "");
     return `${option.location} ${option.name} ${option.code} ${option.country}`;
   },
 });
 
-const airports = [
-  {
-    code: "UTK",
-    location: "Utirik Island",
-    country: "Marshall Islands",
-    name: "Utirik Airport",
-    longitude: 169.852005,
-    latitude: 11.222,
-  },
-  {
-    code: "OCA",
-    location: "Key Largo",
-    country: "United States",
-    name: "Ocean Reef Club Airport",
-    longitude: -80.2748031616,
-    latitude: 25.3253993988,
-  },
-  {
-    code: "PQS",
-    location: "Pilot Station",
-    country: "United States",
-    name: "Pilot Station Airport",
-    longitude: -162.899994,
-    latitude: 61.934601,
-  },
-  {
-    code: "CSE",
-    location: "Crested Butte",
-    country: "United States",
-    name: "Crested Butte Airpark",
-    longitude: -106.928341,
-    latitude: 38.851918,
-  }
-];
+// const airports: Airport[] = [
+//   {
+//     code: "UTK",
+//     location: "Utirik Island",
+//     country: "Marshall Islands",
+//     name: "Utirik Airport",
+//     longitude: 169.852005,
+//     latitude: 11.222,
+//   },
+//   {
+//     code: "OCA",
+//     location: "Key Largo",
+//     country: "United States",
+//     name: "Ocean Reef Club Airport",
+//     longitude: -80.2748031616,
+//     latitude: 25.3253993988,
+//   },
+//   {
+//     code: "PQS",
+//     location: "Pilot Station",
+//     country: "United States",
+//     name: "Pilot Station Airport",
+//     longitude: -162.899994,
+//     latitude: 61.934601,
+//   },
+//   {
+//     code: "CSE",
+//     location: "Crested Butte",
+//     country: "United States",
+//     name: "Crested Butte Airpark",
+//     longitude: -106.928341,
+//     latitude: 38.851918,
+//   },
+// ];
 export default function SearchInput({ icon, isFrom, isTo }: any) {
   const fromCt = useAppSelector((state) => state.swap.from);
   const toCt = useAppSelector((state) => state.swap.to);
   const dispatch = useAppDispatch();
+  const { data, isLoading } = useAirports();
 
   return (
     <Autocomplete
@@ -71,7 +72,8 @@ export default function SearchInput({ icon, isFrom, isTo }: any) {
           ],
         },
       }}
-      options={airports}
+      options={data || []}
+      loading={isLoading}
       getOptionLabel={(option) => `${option.location} (${option.code})`}
       value={isFrom ? fromCt : toCt}
       onChange={(event, newValue: any) => {

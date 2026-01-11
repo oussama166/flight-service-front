@@ -3,9 +3,7 @@ import { enGB } from "date-fns/locale"; // Imported enGB to match the "M T W T F
 import React, { useState } from "react";
 import {
   type DateRange,
-  DayButton,
-  type DayButtonProps,
-  DayPicker,
+  DayPicker
 } from "react-day-picker";
 import "react-day-picker/dist/style.css";
 
@@ -23,10 +21,14 @@ import TextField from "@mui/material/TextField";
 import Tooltip from "@mui/material/Tooltip";
 
 // Custom Components
+import { CustomDayButtonContext } from "../Ui/CutomDayButton";
 import GenericToggle from "../Ui/GenericToggle";
 import GenericSelect from "./GenericSelect";
+import { useAppSelector } from "../../App/hooks";
+import { useFlightHeatmap } from "../../Features/Flights/hooks/useFlightHeatMap";
 
 // --- MOCK DATA FOR PRICE COLORS (To match the image) ---
+
 // In a real app, fetch this from your API
 const currentYear = new Date().getFullYear();
 const currentMonth = new Date().getMonth();
@@ -53,72 +55,25 @@ const highPriceDays = [
 export default function SearchDateTimeRange() {
   const [range, setRange] = useState<DateRange | undefined>();
 
+  // 1. Properly select values from Redux (avoid JSON.stringify)
+  const fromAirport = useAppSelector((state) => state.swap.from);
+  const toAirport = useAppSelector((state) => state.swap.to);
+
+  // 2. Extract codes safely
+  const departureCode = fromAirport?.code;
+  const arrivalCode = toAirport?.code;
+
+  // 3. The hook now waits until both codes are present via 'enabled'
+  const { data, isLoading } = useFlightHeatmap(
+    departureCode,
+    arrivalCode
+  );
+
   const [anchorEl, setAnchorEl] = useState<HTMLDivElement | null>(null);
   const [activeField, setActiveField] = useState<"from" | "to" | null>(null);
 
   const [tripType, setTripType] = useState<string | number>("round_trip");
   const [dateType, setDateType] = useState("specific");
-  const CustomDayContent = (props: any) => {
-    const { day, modifiers } = props;
-    const dayDate = day.date; // This is the Date object
-    const dayNumber = dayDate.getDate();
-
-    // Determine the inner circle background based on modifiers
-    let innerClass =
-      "w-9 h-9 flex items-center justify-center rounded-full transition-all ";
-
-    if (modifiers.lowPrice) {
-      innerClass += " bg-teal-500 text-white font-medium";
-    } else if (modifiers.midPrice) {
-      innerClass += " bg-orange-400 text-white font-medium";
-    } else if (modifiers.highPrice) {
-      innerClass += " bg-rose-500 text-white font-medium";
-    } else if (modifiers.selected) {
-      innerClass += " bg-blue-600 text-white";
-    }
-
-    return (
-      <button
-        className={innerClass}
-        onClick={() => console.log("Clicked day:", props)}
-      >
-        {dayNumber}
-      </button>
-    );
-  };
-  const CustomDayButtonContext = (props: DayButtonProps) => {
-    const { day, modifiers, ...buttonProps } = props;
-
-    // Accès au contexte si nécessaire (pour setRange par exemple)
-    // const { onSelect } = useDayPicker();
-
-    const dayNumber = day.date.getDate();
-
-    // On utilise la MÊME logique de classes que votre première fonction
-    let innerClass =
-      "w-9 h-9 flex items-center justify-center rounded-full transition-all mx-auto my-1";
-
-    if (modifiers.lowPrice) {
-      innerClass += " bg-teal-500 text-white font-medium";
-    } else if (modifiers.midPrice) {
-      innerClass += " bg-orange-400 text-white font-medium";
-    } else if (modifiers.highPrice) {
-      innerClass += " bg-rose-500 text-white font-medium";
-    } else if (modifiers.selected && !modifiers.range_middle) {
-      innerClass += " bg-blue-600 text-white";
-    }
-
-    return (
-      <DayButton
-        {...buttonProps}
-        day={day}
-        modifiers={modifiers}
-        className="p-0 border-none bg-transparent flex items-center justify-center w-full h-full group-data-selected/start:bg-blue-600 group-data-selected/end:bg-blue-600 group-data-selected/start:rounded-l-full group-data-selected/start:rounded-r-none group-data-selected/end:rounded-r-full group-data-selected:rounded-l-none "
-      >
-        <span className={innerClass}>{dayNumber}</span>
-      </DayButton>
-    );
-  };
 
   const tripOptions = [
     {
@@ -237,12 +192,12 @@ export default function SearchDateTimeRange() {
         marginThreshold={null}
         PaperProps={{
           className:
-            "!rounded-xl !mt-2 !shadow-2xl !border !border-slate-100 overflow-hidden",
+            "!h-auto !rounded-xl !mt-2 !shadow-2xl !border !border-slate-100 overflow-y-auto transition-all ease-in-out",
           style: {
             width: "890px",
             maxWidth: "890px",
-            maxHeight: "500px",
-            height: "500px",
+            maxHeight: "600px",
+            minHeight: "500px",
           }, // Adjusted width strategy
         }}
       >
@@ -314,33 +269,32 @@ export default function SearchDateTimeRange() {
               defaultMonth={range?.from || new Date()}
               // Custom Categories
               modifiers={{
-                lowPrice: lowPriceDays,
-                midPrice: midPriceDays,
-                highPrice: highPriceDays,
+                lowPrice: data?.low || [],
+                midPrice: data?.mid || [],
+                highPrice: data?.high || [],
               }}
               components={{
                 DayButton: (props) => <CustomDayButtonContext {...props} />,
               }}
               // Tailwind Styles
               modifiersClassNames={{
-                // selected:
-                //   "bg-blue-600 text-white hover:bg-blue-600 rounded-full",
-                range_start:
-                  "bg-blue-800 text-white rounded-l-full rounded-r-none group/start", // Left rounded
-                range_end:
-                  "bg-blue-800 text-white rounded-r-full rounded-l-none group/end", // Right rounded
-                range_middle: "!bg-blue-50 !text-blue-900 !rounded-none", // Middle square
-                today: "text-blue-600 font-bold rounded-full",
+                // Only handle the "Bar" background here
+                range_middle: "!bg-blue-50 !text-blue-900 !rounded-none",
+                today: "text-blue-600 font-bold",
               }}
               classNames={{
                 months: "w-full flex flex-row justify-between gap-10",
                 month: "w-full space-y-4",
                 day: "flex-row items-center justify-center",
                 caption:
-                  "flex justify-center pt-1 relative items-center text-slate-900 font-bold text-lg",
+                  "flex justify-center pt-1 relative items-center text-slate-900 font-bold text-xl",
                 head_cell: "text-slate-400 font-medium text-xs w-10 pb-2",
                 week: "w-full !my-4",
-                month_caption: "w-full text-center",
+                month_caption: "w-full text-center font-bold text-lg",
+                button_previous:
+                  "!absolute !left-[-850px] !left-1/2 !transform !-translate-y-1/3 cursor-pointer",
+                button_next:
+                  "!absolute !right-0 !right-1/2 !transform !-translate-y-1/3 cursor-pointer",
               }}
               styles={{
                 caption: { color: "#0f172a" },

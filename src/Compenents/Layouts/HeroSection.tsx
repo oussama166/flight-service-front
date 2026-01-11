@@ -16,7 +16,7 @@ const HeroSection = () => (
         </div>
         <div className="relative z-20 w-full max-w-7xl flex flex-col items-center gap-8 text-center mt-10">
             <div className="max-w-3xl space-y-4">
-                <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-white tracking-tight leading-tight drop-shadow-lg">
+                <h1 className="font-pacifico text-4xl sm:text-5xl md:text-6xl font-light text-white tracking-tight leading-tight drop-shadow-lg">
                     Explore the World with Ease
                 </h1>
                 <p className="text-lg sm:text-xl text-white/90 font-medium max-w-2xl mx-auto drop-shadow-md">
