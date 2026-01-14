@@ -26,7 +26,8 @@
     "react-day-picker": "^9.13.0",
     "react-dom": "^19.2.0",
     "react-redux": "^9.2.0",
-    "tailwindcss": "^4.1.18"
+    "tailwindcss": "^4.1.18",
+    "which-polygon": "^2.2.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",

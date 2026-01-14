@@ -9,6 +9,7 @@ export const CustomDayButtonContext = (props: DayButtonProps) => {
   const isStart = !!modifiers.range_start;
   const isEnd = !!modifiers.range_end;
   const isMiddle = !!modifiers.range_middle;
+  const isToday = !!modifiers.today;
 
   // Logic for the inner circle
   let innerClass =
@@ -26,6 +27,8 @@ export const CustomDayButtonContext = (props: DayButtonProps) => {
     innerClass += ` bg-rose-500 text-white font-medium${selectionOverrides}`;
   } else if (isSelected && !isMiddle) {
     innerClass += ` bg-blue-600 text-white rounded-none${selectionOverrides}`;
+  } else if (isToday && !isSelected && !isStart && !isEnd) {
+    innerClass += ` bg-transparent text-blue-600 border border-blue-500 rounded-full${selectionOverrides}`;
   }
 
   return (
@@ -40,12 +43,14 @@ export const CustomDayButtonContext = (props: DayButtonProps) => {
         ${isStart ? "bg-blue-800 !rounded-l-full" : ""}
         ${isEnd ? "bg-blue-800 !rounded-r-full" : ""}
         ${isMiddle ? "bg-blue-50" : ""}
+        ${isToday ? "border border-blue-500 bg-transparent" : ""}
       `}
       // These are REQUIRED for group-data-[xxx] to work
       data-selected={isSelected || undefined}
       data-start={isStart || undefined}
       data-end={isEnd || undefined}
       data-middle={isMiddle || undefined}
+      data-today={isToday || undefined}
     >
       <span className={innerClass}>{dayNumber}</span>
     </DayButton>

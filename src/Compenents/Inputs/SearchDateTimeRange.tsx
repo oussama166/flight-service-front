@@ -1,10 +1,7 @@
 import { format } from "date-fns";
 import { enGB } from "date-fns/locale"; // Imported enGB to match the "M T W T F S S" look
 import React, { useState } from "react";
-import {
-  type DateRange,
-  DayPicker
-} from "react-day-picker";
+import { type DateRange, DayPicker } from "react-day-picker";
 import "react-day-picker/dist/style.css";
 
 // Icons
@@ -64,10 +61,7 @@ export default function SearchDateTimeRange() {
   const arrivalCode = toAirport?.code;
 
   // 3. The hook now waits until both codes are present via 'enabled'
-  const { data, isLoading } = useFlightHeatmap(
-    departureCode,
-    arrivalCode
-  );
+  const { data, isLoading } = useFlightHeatmap(departureCode, arrivalCode);
 
   const [anchorEl, setAnchorEl] = useState<HTMLDivElement | null>(null);
   const [activeField, setActiveField] = useState<"from" | "to" | null>(null);
@@ -109,6 +103,10 @@ export default function SearchDateTimeRange() {
   const handleClose = () => {
     setAnchorEl(null);
     setActiveField(null);
+  };
+  const handleCancel = () => {
+    setRange(undefined); // Revert to the backup
+    handleClose(); // Close the popover
   };
 
   const handleRangeSelect = (newRange: DateRange | undefined) => {
@@ -259,6 +257,7 @@ export default function SearchDateTimeRange() {
               numberOfMonths={2}
               onSelect={handleRangeSelect}
               locale={enGB} // Using enGB to match the visual "M T W T F S S"
+              disabled={{ before: new Date() }}
               formatters={{
                 formatCaption: (date, options) => format(date, "LLLL", options),
                 formatWeekdayName: (date, options) =>
@@ -312,15 +311,25 @@ export default function SearchDateTimeRange() {
                 : "Prices include taxes and fees"}
             </span>
 
-            {/* Apply Button */}
-            <Button
-              variant="contained"
-              onClick={handleClose}
-              disableElevation
-              className="!bg-blue-600 !text-white !font-bold !text-sm !py-2 !px-6 !rounded-lg hover:!bg-blue-700 !capitalize"
-            >
-              Apply
-            </Button>
+            <div className="inline-flex gap-x-5">
+              <Button
+                variant="outlined"
+                className=" !font-bold !text-sm !py-2 !px-6 !rounded-lg !capitalize"
+                disableElevation
+                onClick={handleCancel}
+              >
+                Cancel
+              </Button>
+              {/* Apply Button */}
+              <Button
+                variant="contained"
+                onClick={handleClose}
+                disableElevation
+                className="!bg-blue-600 !text-white !font-bold !text-sm !py-2 !px-6 !rounded-lg> hover:!bg-blue-700 !capitalize"
+              >
+                Apply
+              </Button>
+            </div>
           </div>
         </div>
       </Popover>
