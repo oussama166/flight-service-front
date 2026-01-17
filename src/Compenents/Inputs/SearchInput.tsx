@@ -60,17 +60,7 @@ export default function SearchInput({ icon, isFrom, isTo }: any) {
   const toCt = useAppSelector((state) => state.swap.to);
   const dispatch = useAppDispatch();
   const { data, isLoading } = useAirports();
-  const { data: nearbyAirports, isLoading: isNearbyAirportsLoading } =
-    useNearbyAirports("Morocco");
 
-  const [coords, setCoords] = useState(null);
-
-  const handleLocate = () => {
-    getLocation((data: GeolocationCoordinates) => {
-      setCoords(data);
-      console.log("React state updated:", data);
-    });
-  };
 
   return (
     <Autocomplete
@@ -93,7 +83,6 @@ export default function SearchInput({ icon, isFrom, isTo }: any) {
       getOptionLabel={(option) => `${option.location} (${option.code})`}
       value={isFrom ? fromCt : toCt}
       onChange={(event, newValue: any) => {
-        handleLocate();
         if (isFrom) {
           dispatch(fromTakeoff(newValue));
         } else {
