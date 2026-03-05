@@ -1,7 +1,7 @@
 import { format } from "date-fns";
 import { enGB } from "date-fns/locale"; // Imported enGB to match the "M T W T F S S" look
 import React, { useState } from "react";
-import { type DateRange, DayPicker } from "react-day-picker";
+import { type DateRange } from "react-day-picker";
 import "react-day-picker/dist/style.css";
 
 // Icons
@@ -18,39 +18,20 @@ import TextField from "@mui/material/TextField";
 import Tooltip from "@mui/material/Tooltip";
 
 // Custom Components
-import { CustomDayButtonContext } from "../Ui/CutomDayButton";
-import GenericToggle from "../Ui/GenericToggle";
-import GenericSelect from "./GenericSelect";
 import { useAppSelector } from "../../App/hooks";
 import { useFlightHeatmap } from "../../Features/Flights/hooks/useFlightHeatMap";
+import DatePicker from "../Ui/DatePicker";
+import GenericToggle from "../Ui/GenericToggle";
+import GenericSelect from "./GenericSelect";
+import FlexibleDate from "../Ui/FlexibleDate";
 
-// --- MOCK DATA FOR PRICE COLORS (To match the image) ---
-
-// In a real app, fetch this from your API
-const currentYear = new Date().getFullYear();
-const currentMonth = new Date().getMonth();
-
-const lowPriceDays = [
-  new Date(currentYear, currentMonth, 7),
-  new Date(currentYear, currentMonth, 8),
-  new Date(currentYear, currentMonth, 15),
-  new Date(currentYear, currentMonth, 16),
-  new Date(currentYear, currentMonth + 1, 6),
-  new Date(currentYear, currentMonth + 1, 7),
-];
-const midPriceDays = [
-  new Date(currentYear, currentMonth, 24),
-  new Date(currentYear, currentMonth + 1, 1),
-  new Date(currentYear, currentMonth + 1, 13),
-];
-const highPriceDays = [
-  new Date(currentYear, currentMonth, 11),
-  new Date(currentYear, currentMonth, 4),
-  new Date(currentYear, currentMonth + 1, 11),
-];
-
-export default function SearchDateTimeRange() {
+export default function SearchDateTimeRange({
+  typeDateTime,
+}: {
+  typeDateTime: "DateRange" | "DateSolo";
+}) {
   const [range, setRange] = useState<DateRange | undefined>();
+  const [time, setTime] = useState<Date | undefined>();
 
   // 1. Properly select values from Redux (avoid JSON.stringify)
   const fromAirport = useAppSelector((state) => state.swap.from);
@@ -94,7 +75,7 @@ export default function SearchDateTimeRange() {
 
   const handleClick = (
     event: React.MouseEvent<HTMLDivElement>,
-    field: "from" | "to"
+    field: "from" | "to",
   ) => {
     setAnchorEl(event.currentTarget);
     setActiveField(field);
@@ -111,7 +92,10 @@ export default function SearchDateTimeRange() {
 
   const handleRangeSelect = (newRange: DateRange | undefined) => {
     setRange(newRange);
-    // Removed auto-close timeout to allow user to click "Apply" in footer
+    console.log("Selected range:", newRange);
+  };
+  const handelSelect = (newSelectDate: Date | undefined) => {
+    setTime(newSelectDate);
   };
 
   const open = Boolean(anchorEl);
@@ -122,7 +106,7 @@ export default function SearchDateTimeRange() {
       InputProps: {
         readOnly: true,
         className: `
-          !bg-slate-50 !border !border-slate-200 !rounded-xl !transition-all !cursor-pointer
+          !bg-slate-50 !border !border-slate-200 !rounded-xl !transition-all !cursor-pointer 
           flex items-center text-sm !h-[71px]
           ${isActive ? "!ring-2 !ring-blue-500/20 !border-blue-500" : ""}
           hover:!bg-slate-100
@@ -143,8 +127,7 @@ export default function SearchDateTimeRange() {
   return (
     <>
       {/* --- INPUTS --- */}
-      <div className="relative group w-full">
-        {/* !TODO: Need to be refactor this  */}
+      <div className="relative group w-full flex-1 transition-all duration-500 ease-in-out">
         <label className="block text-xs text-left font-semibold text-slate-500 uppercase tracking-wider mb-1.5 ml-1">
           Departure
         </label>
@@ -160,23 +143,34 @@ export default function SearchDateTimeRange() {
           fullWidth
           {...getTextFieldProps("from")}
         />
-        {/* !TODO: Need to be refactor this  */}
       </div>
 
-      <div className="relative group w-full">
-        <label className="block text-xs text-left font-semibold text-slate-500 uppercase tracking-wider mb-1.5 ml-1">
-          Return
-        </label>
-        <TextField
-          onClick={(e) => handleClick(e, "to")}
-          disabled={activeField === "from"}
-          value={
-            range?.to ? format(range.to, "dd/MM/yyyy", { locale: enGB }) : ""
-          }
-          placeholder="Add Date"
-          fullWidth
-          {...getTextFieldProps("to")}
-        />
+      <div
+        className={`
+        relative group transition-all duration-500 ease-in-out overflow-hidden
+        ${
+          typeDateTime === "DateSolo"
+            ? "w-0 opacity-0 pl-0"
+            : "w-full sm:w-1/2 opacity-100 pl-4"
+        }
+    `}
+      >
+        {/* Inner container with min-width ensures text doesn't squish while animating */}
+        <div className="min-w-[150px]">
+          <label className="block text-xs text-left font-semibold text-slate-500 uppercase tracking-wider mb-1.5 ml-1 whitespace-nowrap">
+            Return
+          </label>
+          <TextField
+            onClick={(e) => handleClick(e, "to")}
+            disabled={activeField === "from"}
+            value={
+              range?.to ? format(range.to, "dd/MM/yyyy", { locale: enGB }) : ""
+            }
+            placeholder="Add Date"
+            fullWidth
+            {...getTextFieldProps("to")}
+          />
+        </div>
       </div>
 
       {/* --- POPOVER --- */}
@@ -249,58 +243,20 @@ export default function SearchDateTimeRange() {
             </div>
           </div>
 
-          {/* 2. CALENDAR BODY */}
-          <div className="p-4">
-            <DayPicker
-              mode="range"
-              selected={range}
-              numberOfMonths={2}
-              onSelect={handleRangeSelect}
-              locale={enGB} // Using enGB to match the visual "M T W T F S S"
-              disabled={{ before: new Date() }}
-              formatters={{
-                formatCaption: (date, options) => format(date, "LLLL", options),
-                formatWeekdayName: (date, options) =>
-                  format(date, "eeeee", options),
-              }}
-              min={1}
-              animate
-              defaultMonth={range?.from || new Date()}
-              // Custom Categories
-              modifiers={{
-                lowPrice: data?.low || [],
-                midPrice: data?.mid || [],
-                highPrice: data?.high || [],
-              }}
-              components={{
-                DayButton: (props) => <CustomDayButtonContext {...props} />,
-              }}
-              // Tailwind Styles
-              modifiersClassNames={{
-                // Only handle the "Bar" background here
-                range_middle: "!bg-blue-50 !text-blue-900 !rounded-none",
-                today: "text-blue-600 font-bold",
-              }}
-              classNames={{
-                months: "w-full flex flex-row justify-between gap-10",
-                month: "w-full space-y-4",
-                day: "flex-row items-center justify-center",
-                caption:
-                  "flex justify-center pt-1 relative items-center text-slate-900 font-bold text-xl",
-                head_cell: "text-slate-400 font-medium text-xs w-10 pb-2",
-                week: "w-full !my-4",
-                month_caption: "w-full text-center font-bold text-lg",
-                button_previous:
-                  "!absolute !left-[-850px] !left-1/2 !transform !-translate-y-1/3 cursor-pointer",
-                button_next:
-                  "!absolute !right-0 !right-1/2 !transform !-translate-y-1/3 cursor-pointer",
-              }}
-              styles={{
-                caption: { color: "#0f172a" },
-                month_grid: { width: "100%" },
-              }}
+          {/* In cas where the flexDate is false  */}
+          {dateType == "specific" ? (
+            <DatePicker
+              typeDateTime="DateRange"
+              range={range}
+              time={time}
+              handleRangeSelect={handleRangeSelect}
+              handelSelect={handelSelect}
+              data={data}
             />
-          </div>
+          ) : (
+            <FlexibleDate />
+          )}
+          {/* 2. CALENDAR BODY */}
 
           {/* 3. FOOTER */}
           <div className="flex items-center justify-between p-4 border-t border-slate-100 bg-white">
