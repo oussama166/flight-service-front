@@ -4,7 +4,7 @@ export const fetchFlexibleDate = async (
   departureCode: string,
   arrivalCode: string,
 ) => {
-  const { data } = await axiosInstance.get("getFlightsByMonthPrice", {
+  const { data  } = await axiosInstance.get("getFlightsByMonthPrice", {
     params: {
       fromCode: departureCode,
       toCode: !arrivalCode ? "" : arrivalCode,

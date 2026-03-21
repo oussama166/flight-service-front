@@ -20,25 +20,6 @@ interface GenericSelectProps {
   placeholder?: string;
 }
 
-// const [cabinClass, setCabinClass] = useState<string | number>("economy");
-
-// const cabinOptions = [
-//   {
-//     value: "economy",
-//     label: "Economy",
-//     icon: <AirlineSeatReclineNormalOutlined fontSize="small" />,
-//   },
-//   {
-//     value: "business",
-//     label: "Business",
-//     icon: <BusinessCenterOutlined fontSize="small" />,
-//   },
-//   {
-//     value: "first",
-//     label: "First Class",
-//     icon: <DiamondOutlined fontSize="small" />,
-//   },
-// ];
 
 export default function GenericSelect({
   value,
