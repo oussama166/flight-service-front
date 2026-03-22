@@ -4,11 +4,8 @@ import match from "autosuggest-highlight/match";
 import parse from "autosuggest-highlight/parse";
 
 import {useAppDispatch, useAppSelector} from "../../App/hooks";
-import {
-    useAirports
-} from "../../Features/Flights/hooks/useAirpots";
+import {useAirports} from "../../Features/Flights/hooks/useAirpots";
 import {fromTakeoff, toLandOff} from "../../Features/Swap/swap-slice";
-import {Airport} from "@/Features/Flights/Types/types";
 
 const filterOptions = createFilterOptions({
     matchFrom: "any",

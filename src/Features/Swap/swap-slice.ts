@@ -7,7 +7,7 @@ const initialState: SwapState = {
     isSwapped: false,
     from: null,
     to: null,
-    middleSwaper: "",
+    middleSwaper: ""
 };
 
 const swapSlice = createSlice({
